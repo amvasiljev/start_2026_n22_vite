@@ -20,3 +20,88 @@ npm install --legacy-peer-deps
 - data.json — данные компонента
 
 - component.scss — стили
+
+## Структура data.json
+```json
+{
+  "presetName": {
+    "type": "h1",
+    "attr": "default fsz-46 black",
+    "text": "Заголовок",
+    "subtext": "Подзаголовок"
+  }
+}
+```
+## Использование компонента
+```pug
+include components/title/title
+
++title({
+  preset: 'heroMain'
+})
+```
+```pug
+include components/nav/nav
+
++nav({
+  type: 'header',
+  maxLevel: 3
+})
+```
+## 📦 Данные из JSON
+
+Данные из `data.json` подгружаются автоматически и доступны в компонентах как глобальные переменные:
+
+| Папка компонента | Переменная |
+|------------------|------------|
+| `title/` | `TITLE_DATA` |
+| `nav/` | `NAV_DATA` |
+| `header/` | `HEADER_DATA` |
+| `footer/` | `FOOTER_DATA` |
+
+```pug
+- const data = typeof TITLE_DATA !== 'undefined' ? TITLE_DATA : {};
+- const preset = data['heroMain'] || {};
+h1= preset.text || 'Заголовок по умолчанию'
+```
+
+## 🎨 Стили
+SCSS с поддержкой:
+Переменные (_vars.scss)
+
+- Миксины (_mixins.scss)
+- Медиа-запросы
+- Компонентные стили
+
+Пример использования миксина:
+
+```scss
+@include m_320 {
+  text-align: center;
+}
+```
+Импорты в main.scss:
+
+```scss
+@import './utils/vars';
+@import './utils/reset';
+@import './utils/fonts';
+@import './utils/mixins';
+@import './utils/libs';
+```
+
+## 📄 Страницы
+Все страницы лежат в src/pages/. После сборки в dist/ появляются HTML-файлы:
+```text
+dist/
+├── index.html
+├── about.html
+├── contact.html
+├── fonts/
+├── img/
+└── assets/
+    ├── main.js
+    └── main.css
+```
+
+## ⚙️ Конфигурация Vite
