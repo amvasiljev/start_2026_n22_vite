@@ -2,7 +2,12 @@ mixin nav-panel()
     div(data-app-nav-panel)
         div
             +logo({
-                attr: 'header color-white'
+                type: 'link',
+                attr: 'color-white header',
+                logoType: 'img',
+                imgFolder: 'logo',
+                width: 200,
+                height: 46
             })
 
 
@@ -12,15 +17,15 @@ mixin nav-panel()
                 icon:'svg_close',
             })
 
-  
+
         +nav({
             type:'header',
             attr:'mobile',
-            maxLevel: 2,
+            maxLevel: 1,
             ariaLabel: 'Close menu',
-            
+
         })
-            
+
         div
             //- +contact('','','','contactMobile')
             //- +social('color-white size-50','header','')
