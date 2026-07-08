@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 import { viteConvertPugInHtml } from '@mish.dev/vite-convert-pug-in-html';
 import { readFileSync, existsSync, readdirSync, statSync, renameSync, mkdirSync, rmSync, copyFileSync } from 'fs';
 import { resolve, join, dirname, basename, relative } from 'path';
-
+import autoprefixer from 'autoprefixer';
 const componentsDir = resolve(__dirname, 'src/components');
 const srcDir = resolve(__dirname, 'src');
 
@@ -340,6 +340,13 @@ export default defineConfig({
     open: true,
   },
   css: {
+     postcss: {
+      plugins: [
+        autoprefixer({
+          overrideBrowserslist: ['last 2 versions', '> 1%', 'not dead']
+        })
+      ]
+    },
     preprocessorOptions: {
       scss: {
         silenceDeprecations: ['import'],
