@@ -1,0 +1,95 @@
+//- Базовый макет
+include ../components/preloader/preloader
+include ../components/title/title
+include ../components/button/button
+include ../components/section/section
+include ../components/header/header
+include ../components/footer/footer
+include ../components/cookies/cookies
+include ../components/form/form
+include ../components/dialog/dialog
+include ../components/nav/nav-panel/nav-panel
+//- include ../components/faq/faq
+
+
+include ../components/box/box
+include ../components/card/card
+
+//- include ../components/logo/logo
+block variables
+    
+doctype html
+html(lang="ru")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        <meta name="mobile-web-app-capable" content="yes">
+        title #{title}
+        meta(name="description", content=description)
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        style
+            | #preloader {
+            | position: fixed;
+            | top: 0;
+            | left: 0;
+            | width: 100%;
+            | height: 100%;
+            | display: flex;
+            | align-items: center;
+            | justify-content: center;
+            | background: black;
+            | z-index: 999999;
+            | }
+            | #preloader.hide-preloader {
+            | animation: hidePreloader 1s;
+            | }
+            | #preloader.preloader-hidden {
+            | display: none;
+            | }
+            | @keyframes hidePreloader {
+            | 0% {
+            | opacity: 1;
+            | }
+            | 100% {
+            | opacity: 0;
+            | }
+            | }
+
+        link(rel="stylesheet" href="/styles/main.scss")
+        block styles
+        include ../components/includes/styles
+    body
+        +preloader()
+        +header('fixed')
+        main
+            block content
+
+        +footer()
+        +nav-panel()
+        div(data-app-nav-overlay aria-hidden="true")
+        +dialog({
+            type: 'type1',
+            attr: 'callback',
+            attrs:{
+                id: 'popup_callback',
+                hidden: true
+            }
+        })
+        +dialog({
+            type: 'type2',
+            attr: 'thanks',
+            attrs:{
+                id: 'popup_thanks',
+                hidden: true
+            }
+        })
+        +cookies()
+        include ../components/includes/scripts
+        script(src="/main.js" type="module")
+        block scripts
+        

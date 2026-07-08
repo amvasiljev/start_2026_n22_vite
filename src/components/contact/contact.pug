@@ -1,0 +1,89 @@
+mixin contact(opts = {})
+    - const type = opts.type || ''
+    - const attr = opts.attr || ''
+    - const text = opts.text || ''
+    - const value = opts.value || ''
+    - const icon = opts.icon || ''
+    - const hasIcon = opts.hasIcon || false
+    - const label = opts.label || ''
+    - const labelTag = opts.labelTag || 'strong'
+    - const customAttrs = opts.attrs || {}
+    - const labelAdd = opts.labelAdd || ''
+    
+    - let tag = 'span'
+    - let href = ''
+    - let baseAttrs = { 'data-app-contact': attr || '' }
+    
+    case type
+        when 'phone'
+            - tag = 'a'
+            - href = `tel:${value.replace(/[^0-9+]/g, '')}`
+        when 'email'
+            - tag = 'a'
+            - href = `mailto:${value}`
+        when 'link'
+            - tag = 'a'
+            - href = value
+        when 'text'
+            - tag = 'span'
+    
+    if tag === 'a'
+        - baseAttrs.href = href
+    
+    - Object.assign(baseAttrs, customAttrs)
+    
+    if label
+        #{tag}&attributes(baseAttrs)
+            #{labelTag}= label
+            if hasIcon && icon
+                div
+                    svg
+                        use(xlink:href= img + `sprite.svg#${icon}`)
+                    span= text || value
+                    if labelAdd
+                        small= labelAdd
+            else
+                span= text || value
+    else
+        #{tag}&attributes(baseAttrs)
+            if hasIcon && icon
+                svg
+                    use(xlink:href= img + `sprite.svg#${icon}`)
+                span= text || value
+                if labelAdd
+                    small= labelAdd
+            else
+                | #{text || value}
+
+
+//- +contact({
+//-     type: 'phone',
+//-     attr: 'header',
+//-     value: '+7 (999) 000-00-00',
+//-     hasIcon: true,
+//-     icon: 'svg_tel',
+    
+//-     attrs:{
+//-         'aria-label': true
+//-     }
+//- })
+//- +contact({
+//-     type: 'email',
+//-     attr: 'footer',
+//-     value: 'info@example.com',
+//-     hasIcon: true,
+//-     icon: 'svg_tel',
+//-     label: 'Почта'
+//- })
+//- +contact({
+//-     text:'text',
+//-     label: 'Address'
+
+//- })
+//- +contact({
+//-     text:'text'
+//- })
+//- +contact({
+//-     type:'phone',
+//-     value: '+7 (999) 000-00-00',
+//- })

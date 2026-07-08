@@ -1,0 +1,44 @@
+mixin social(opts = {})
+    - const type = opts.type || 'icon'
+    - const attr = opts.attr || ''
+    - const icon = opts.icon || 'svg_social_default'
+    - const imgSrc = opts.imgSrc || ''
+    - const imgAlt = opts.imgAlt || ''
+    - const text = opts.text || ''
+    - const link = opts.link || '/'
+    - const label = opts.label || ''
+    - const items = opts.items || []
+    - const customAttrs = opts.attrs || {}
+    - const baseAttrs = { 'data-app-social': attr || '' }
+    - Object.assign(baseAttrs, customAttrs)
+
+    case type
+        when 'icon'
+            a(href=link target="_blank" rel="noopener noreferrer" aria-label=label || text || icon)&attributes(baseAttrs)
+                svg
+                    use(xlink:href= img + `sprite.svg#${icon}`)
+
+        when 'image'
+            a(href=link target="_blank" rel="noopener noreferrer" aria-label=label || text || imgAlt)&attributes(baseAttrs)
+                img(src= img + imgSrc alt=imgAlt || label || text)
+
+        when 'text'
+            a(href=link target="_blank" rel="noopener noreferrer")&attributes(baseAttrs)
+                if icon
+                    svg
+                        use(xlink:href= img + `sprite.svg#${icon}`)
+                span= text
+
+        when 'group'
+            nav&attributes(baseAttrs)
+                if label
+                    span= label
+                each item in items
+                    a(href=item.link target="_blank" rel="noopener noreferrer" aria-label=item.label || item.text || item.icon || item.imgAlt)
+                        if item.icon
+                            svg
+                                use(xlink:href= img + `sprite.svg#${item.icon}`)
+                        else if item.imgSrc
+                            img(src= img + item.imgSrc alt=item.imgAlt || item.label || item.text)
+                        if item.text
+                            span= item.text

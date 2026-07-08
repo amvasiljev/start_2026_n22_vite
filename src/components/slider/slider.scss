@@ -1,0 +1,80 @@
+[data-app-slider] {}
+
+[data-app-slider-options] {}
+
+
+// arrows setting
+
+[data-app-slider-arrows] {}
+
+
+
+[data-app-slider-pagination] {
+
+    .swiper-pagination {
+        position: unset;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+
+        &-bullet {
+            height: 10px;
+            width: 10px;
+            background-color: var(--color-white-04);
+            opacity: 1;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+
+            padding: 0;
+
+
+            &-active {
+                background-color: var(--color-white);
+                width: 20px;
+            }
+        }
+
+    }
+}
+
+[data-app-slider-pagination~=disabled] {
+    display: none;
+
+}
+
+
+[data-app-slider-arrows~=flex] {
+    display: flex;
+    align-items: center;
+}
+
+[data-app-slider-arrows~=flex-end] {
+    justify-content: flex-end;
+}
+
+[data-app-slider-arrows~=gap-20] {
+    gap: 20px;
+}
+
+
+
+.swiper-slide {
+    outline: 1px solid wheat;
+    height: auto;
+}
+
+
+// .swiper-free-mode .swiper-wrapper {
+//   transition-timing-function: ease-out;
+//   margin: 0 auto;
+// }
+
+// .swiper-horizontal.swiper-free-mode > .swiper-wrapper {
+//   scroll-snap-type: none;
+// }
+
+// /* Если нужно отключить свайпы на стрелках (опционально) */
+// .slider__arrow_next, 
+// .slider__arrow_prev {
+//   cursor: pointer;
+// }

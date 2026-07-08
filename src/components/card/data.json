@@ -1,0 +1,87 @@
+{
+  "about": [
+    {
+      "type": "text",
+      "title": "Заголовок",
+      "text": "Текст",
+      "image": "",
+      "number": "01",
+      "attr": "text round-30 accent-white number p-30"
+    },
+    {
+      "type": "imageSingle",
+      "title": "",
+      "text": "",
+      "image": "card_1",
+      "attr": ""
+    },
+    {
+      "type": "text",
+      "title": "Заголовок",
+      "text": "Длинный текст",
+      "image": "",
+      "number": "02",
+      "attr": "text round-30 accent-white number p-30"
+    },
+    {
+      "type": "imageSingle",
+      "title": "",
+      "text": "",
+      "image": "card_1",
+      "attr": "image round-30"
+    },
+    {
+      "type": "imageSingle",
+      "title": "",
+      "text": "",
+      "image": "card_1",
+      "attr": "image round-30"
+    },
+    {
+      "type": "text",
+      "title": "Заголовок",
+      "text": "Длинный текст",
+      "image": "",
+      "number": "03",
+      "attr": "text round-30 accent-white number p-30"
+    },
+
+    {
+      "type": "imageSingle",
+      "title": "",
+      "text": "",
+      "image": "card_1",
+      "attr": "icon round-30 grdblue"
+    },
+    {
+      "type": "imageSingle",
+      "title": "",
+      "text": "",
+      "image": "card_1",
+      "attr": "icon round-30 grdblue"
+    },
+    {
+      "type": "text",
+      "title": "Заголовок",
+      "text": "Длинный текст",
+      "image": "",
+      "number": "04",
+      "attr": "text round-30 accent-white number p-30 align-v"
+    },
+    {
+      "type": "imageSingle",
+      "title": "",
+      "text": "",
+      "image": "card_1",
+      "attr": "image round-30"
+    },
+    {
+      "type": "text",
+      "title": "Заголовок",
+      "text": "Длинный текст",
+      "image": "",
+      "number": "05",
+      "attr": "text round-30 accent-white number p-30 align-v"
+    }
+  ]
+}

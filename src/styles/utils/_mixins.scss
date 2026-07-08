@@ -1,0 +1,73 @@
+
+// Миксины для медиа-запросов
+@mixin m_320 {
+  @media (width < 768px) {
+    @content;
+  }
+}
+
+@mixin m_768 {
+  @media (768px <= width < 1024px) {
+    @content;
+  }
+}
+
+@mixin m_768max {
+  @media (width < 1024px) {
+    @content;
+  }
+}
+@mixin m_768_1200 {
+  @media (768px <= width < 1200px) {
+    @content;
+  }
+}
+
+
+
+@mixin m_1024 {
+  @media (1024px <= width < 1200px) {
+    @content;
+  }
+}
+
+@mixin m_1024max {
+  @media (0 < width < 1200px) {
+    @content;
+  }
+}
+
+@mixin m_1200 {
+  @media (1200px <= width < 1370px) {
+    @content;
+  }
+}
+@mixin m_1200_max {
+  @media (0 <= width < 1370px) {
+    @content;
+  }
+}
+
+@mixin m_1600 {
+  @media (1370px <= width < 1600px) {
+    @content;
+  }
+}
+
+@mixin m_1370 {
+  @media (1370px <= width < 1920px) {
+    @content;
+  }
+}
+
+@mixin m_3k {
+  @media screen and (min-width: 1921px) {
+    @content;
+  }
+}
+
+@mixin m_ie {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}

@@ -1,0 +1,45 @@
+include ../contact/contact
+include ../logo/logo
+include ../nav/nav
+mixin header(attr)
+	//- - const dataAuth = require('@blocks/contact/data.json')
+	- const dataAuth = typeof CONTACT_DATA !== 'undefined' ? CONTACT_DATA : {};
+	header(data-app-header= attr)
+		div(data-app-container="header")
+			+logo({
+				type: 'link',
+				attr: 'color-white header',
+				logoType: 'img',
+				imgFolder: 'logo',
+				width: 323,
+				height: 32
+			})
+			+nav({
+				type:'header',
+				attr:'header color-white',
+				maxLevel: 1,
+				ariaLabel: 'Close menu',
+				
+			})
+			each item in dataAuth.auth
+				+contact({
+					type: item.type,
+					attr: item.attr,
+					value: item.value,
+					text:  item.text,
+					hasIcon: true,
+					label: item.label,
+					icon: item.icon,
+					labelAdd: item.labelAdd,
+					attrs:{
+						'aria-label': true
+					}
+				})
+			
+			+button({
+				attr: 'burger',
+				svg: true,
+				icon: 'svg_burger',
+				ariaLabel: 'Open menu'
+			})
+			//- +button('🌙','','','','','dark')

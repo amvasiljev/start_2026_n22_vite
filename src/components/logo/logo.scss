@@ -1,0 +1,48 @@
+[data-app-logo] {
+
+
+    svg {
+        height: 100%;
+        width: 100%;
+    }
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+}
+
+// [data-app-logo~=color-white] {
+//     --color-1: #FABC05;
+//     --color-2: #109D58;
+// }
+
+// [data-app-logo~=color-black] {
+//     --color-1: #E94436;
+//     --color-2: #4385F3;
+// }
+
+// [data-app-logo~=page] {
+//     color: black;
+
+// }
+
+[data-app-logo~=header] {
+    display: flex;
+
+    aspect-ratio: 4.35/1;
+
+    outline: 1px solid wheat;
+
+    width: #{clampValue(1200, 1920, 200, 323)};
+
+    @include m_768max{
+        margin: 0 auto 0 0;
+    }
+}
+
+[data-app-logo~=footer] {
+    display: flex;
+
+}

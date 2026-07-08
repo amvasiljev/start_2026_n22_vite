@@ -1,0 +1,57 @@
+mixin radio(opts = {})
+    - const name = opts.name || ''
+    - const value = opts.value || ''
+    - const checked = opts.checked || false
+    - const required = opts.required || false
+    - const label = opts.label || ''
+    - const small = opts.small || ''
+    - const error = opts.error || ''
+    - const svg = opts.svg || false
+    - const icon = opts.icon || 'svg_radio'
+    - const customAttrs = opts.attrs || {}
+    - const id = opts.id || `radio-${Math.random().toString(36).slice(2, 8)}`
+    - let inputAttrs = { 'type': 'radio', 'name': name, 'value': value,'id': id }
+    
+    if checked
+        - inputAttrs.checked = true
+    
+    //- ARIA: обязательное поле
+    if required
+        - inputAttrs.required = true
+        - inputAttrs['aria-required'] = 'true'
+    
+    //- ARIA: ошибка
+    if error
+        - inputAttrs['aria-invalid'] = 'true' 
+        - inputAttrs['aria-describedby'] = `${id}-error`
+    else
+        - inputAttrs['aria-invalid'] = 'false'
+    
+    //- Добавляем кастомные атрибуты
+    - Object.assign(inputAttrs, customAttrs)
+    
+    label
+        input&attributes(inputAttrs)
+        
+        if svg
+            svg(aria-hidden="true")
+                use(xlink:href=img + `sprite.svg#${icon}`)
+        
+        if small
+            span
+                span !{label}
+                    if required
+                        sup(aria-hidden="true") *
+                small= small
+        else
+            span !{label}
+                if required
+                    sup(aria-hidden="true") *
+        
+        if error
+            span(
+                id=`${id}-error`
+                class="error-message"
+                role="alert"
+                aria-live="polite"
+            )= error

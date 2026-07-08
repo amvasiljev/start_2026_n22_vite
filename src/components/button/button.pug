@@ -1,0 +1,93 @@
+mixin button(opts = {})
+    - const type = opts.type || 'default'
+    - const attr = opts.attr || ''
+    - const text = opts.text || ''
+    - const link = opts.link || ''
+    - const linkId = opts.linkId || ''
+    - const svg = opts.svg || false
+    - const icon = opts.icon || 'svg_arrow_default'
+    - const ariaLabel = opts.ariaLabel || ''
+    - const customAttrs = opts.attrs || {}  //- произвольные атрибуты
+    - const tag = opts.tag || false        //- явное указание тега
+    - const moveBlock = opts.moveBlock || false  //- включение moveBlock
+
+    - const hasText = text && text.length > 0
+    - const needsAriaLabel = svg && !hasText && !ariaLabel
+
+    //- Миксин для moveBlock
+    mixin moveBlock
+        .move-block&attributes(moveBlock === true ? {} : moveBlock.attrs || {})
+            //- Первая иконка - если передан svg и icon, используем его, иначе дефолтный
+            div
+                svg(aria-hidden="true")
+                    use(xlink:href= img + `sprite.svg#${svg && icon ? icon : (moveBlock.icon || 'svg_arrow_default')}`)
+                
+                if moveBlock.text
+                    span= moveBlock.text
+                else if hasText
+                    span= text
+
+                //- Вторая иконка - используем moveBlock.iconSecond или тот же icon или дефолтный
+                svg(aria-hidden="true")
+                    use(xlink:href= img + `sprite.svg#${moveBlock.iconSecond || (svg && icon ? icon : 'svg_arrow_default')}`)
+
+    mixin content
+        if hasText
+            span= text
+
+    mixin iconBlock
+        if svg
+            svg(aria-hidden="true")
+                use(xlink:href= img + `sprite.svg#${icon}`)
+
+    - let ariaLabelAttr = ''
+    if needsAriaLabel
+        - ariaLabelAttr = 'text'
+    else if ariaLabel
+        - ariaLabelAttr = ariaLabel
+
+    //- Определяем тег
+    - let finalTag = tag
+    - let baseAttrs = {}
+
+    if !finalTag
+        //- Автоопределение тега по типу
+        case type
+            when 'link'
+                - finalTag = 'a'
+            when 'fancybox'
+                - finalTag = 'a'
+            when 'submit'
+                - finalTag = 'button'
+            when 'div'
+                - finalTag = 'div'
+            default
+                - finalTag = 'button'
+
+    //- Базовые атрибуты для каждого типа
+    case type
+        when 'link'
+            - baseAttrs = { 'data-app-button': attr, 'href': link, 'aria-label': ariaLabelAttr || null }
+
+        when 'submit'
+            - baseAttrs = { 'data-app-button': attr, 'type': 'submit', 'value': 'submit', 'aria-label': ariaLabelAttr || null }
+
+        when 'fancybox'
+            - baseAttrs = { 'data-app-button': attr, 'href': 'javascript:;', 'data-fancybox': '', 'data-src': linkId, 'aria-label': ariaLabelAttr || null,'aria-controls': linkId.replace('#', ''), 'aria-haspopup': 'dialog'}
+
+        when 'div'
+            - baseAttrs = { 'data-app-button': attr, 'type': 'button', 'aria-label': ariaLabelAttr || null }
+
+        default
+            - baseAttrs = { 'data-app-button': attr, 'type': 'button', 'aria-label': ariaLabelAttr || null }
+
+    //- Добавляем кастомные атрибуты (переопределяют базовые при конфликте)
+    - Object.assign(baseAttrs, customAttrs)
+
+    //- Рендерим
+    #{finalTag}&attributes(baseAttrs)
+        if !moveBlock
+            +content
+            +iconBlock
+        else
+            +moveBlock

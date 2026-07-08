@@ -1,0 +1,144 @@
+// text styles
+
+[data-app-text] {
+
+    h1 {
+        font-size: #{clampValue(600, 1920, 23, 46)};
+        line-height: #{clampValue(600, 1920, 36, 55)};
+        font-stretch: normal;
+        font-style: normal;
+        font-weight: 500;
+        letter-spacing: normal;
+        color: var(--color-main);
+        margin-bottom: #{clampValue(600, 1440, 15, 40)};
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    h2 {
+        font-size: #{clampValue(600, 1920, 23, 46)};
+        line-height: #{clampValue(600, 1920, 36, 55)};
+        margin-bottom: #{clampValue(600, 1440, 15, 40)};
+        margin-top: #{clampValue(600, 1440, 15, 40)};
+        text-transform: uppercase;
+        font-weight: 500;
+        letter-spacing: 1px;
+         color: var(--color-main);
+    }
+
+    h3 {
+        font-size: #{clampValue(600, 1440, 22, 32)};
+        font-weight: 500;
+        line-height: 1.3;
+        margin-bottom: #{clampValue(600, 1440, 18, 24)};
+         color: var(--color-main);
+    }
+
+    h4 {
+        font-size: #{clampValue(600, 1440, 20, 26)};
+        font-weight: 500;
+        line-height: 1.3;
+        margin-bottom: #{clampValue(600, 1440, 18, 20)};
+         color: var(--color-main);
+    }
+
+    h5 {
+        margin-bottom: #{clampValue(600, 1440, 18, 24)};
+        font-weight: 500;
+        line-height: 1.3;
+        margin-bottom: #{clampValue(600, 1440, 18, 20)};
+         color: var(--color-main);
+    }
+
+    h6 {
+        font-size: #{clampValue(600, 1440, 16, 18)};
+        font-weight: 500;
+        line-height: 1.3;
+        margin-bottom: #{clampValue(600, 1440, 16, 18)};
+         color: var(--color-main);
+    }
+
+    p,
+    li,
+    a,
+    span {
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 21px;
+        letter-spacing: normal;
+
+        color: var(--color-main-08);
+    }
+
+    p {
+        margin-bottom: 20px;
+    }
+
+
+    ol {
+        padding: 0 0 0 20px;
+        margin-bottom: 20px;
+
+        li {
+            list-style-type: decimal;
+        }
+    }
+
+    ul {
+        padding: 0 0 0 20px;
+        margin-bottom: 20px;
+
+        li {
+            list-style-type: disc;
+        }
+    }
+
+
+    table {
+        width: 100%;
+
+        td,
+        th {
+            border: 1px solid var(--accent-black-01);
+            padding: 10px;
+            color: var(--color-main);
+            font-size: #{clampValue(600, 1440, 14, 16)};
+        }
+
+        tr {
+            &:first-child {
+
+                td,
+                th {
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+    img {
+        display: block;
+        border-radius: #{clampValue(600, 1920, 20, 30)};
+        margin-bottom: 20px;
+    }
+}
+
+[data-app-text-table] {
+    padding: 0 0 16px 0;
+    margin: 0 0 16px 0;
+    overflow-x: auto;
+
+    table {
+        min-width: 800px;
+    }
+}
+
+// text mod styles
+
+[data-app-text~=center] {
+    * {
+        text-align: center;
+    }
+}

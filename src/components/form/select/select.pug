@@ -1,0 +1,134 @@
+mixin select(opts = {})
+    - const name = opts.name || ''
+    - const options = opts.options || []
+    - const selected = opts.selected || ''
+    - const required = opts.required || false
+    - const error = opts.error || ''
+    - const label = opts.label || ''
+    - const id = opts.id || ''
+    - const layout = opts.layout || 'simple'
+    - const customAttrs = opts.attrs || {}
+    
+    - let selectAttrs = { 'name': name }
+    
+    if required
+        - selectAttrs.required = true
+    if error
+        - selectAttrs.class = 'error'
+    
+    - Object.assign(selectAttrs, customAttrs)
+    
+    case layout
+        when 'simple'
+            select&attributes(selectAttrs)
+                each opt in options
+                    if opt.value === selected
+                        option(value=opt.value selected)= opt.label
+                    else
+                        option(value=opt.value)= opt.label
+        
+        when 'wrap'
+            label
+                span
+                    | #{label || name}
+                    if required
+                        sup *
+                select&attributes(selectAttrs)
+                    each opt in options
+                        if opt.value === selected
+                            option(value=opt.value selected)= opt.label
+                        else
+                            option(value=opt.value)= opt.label
+        
+        when 'separate'
+            - const selectId = id || `select-${Math.random().toString(36).slice(2, 8)}`
+            label(for=selectId)
+                span
+                    | #{label || name}
+                    if required
+                        sup *
+            select(id=selectId)&attributes(selectAttrs)
+                each opt in options
+                    if opt.value === selected
+                        option(value=opt.value selected)= opt.label
+                    else
+                        option(value=opt.value)= opt.label
+        
+        when 'error'
+            label
+                span
+                    | #{label || name}
+                    if required
+                        sup *
+                select&attributes(selectAttrs)
+                    each opt in options
+                        if opt.value === selected
+                            option(value=opt.value selected)= opt.label
+                        else
+                            option(value=opt.value)= opt.label
+                if error
+                    span(class="error-message")= error
+
+
+//- //- 1. Простой select
+//- +select({
+//-     layout: 'simple',
+//-     name: 'city',
+//-     options: [
+//-         { value: 'msk', label: 'Москва' },
+//-         { value: 'spb', label: 'СПб' },
+//-         { value: 'kzn', label: 'Казань' }
+//-     ]
+//- })
+
+//- //- 2. Label оборачивает
+//- +select({
+//-     layout: 'wrap',
+//-     label: 'Город',
+//-     name: 'city',
+//-     required: true,
+//-     options: [
+//-         { value: 'msk', label: 'Москва' },
+//-         { value: 'spb', label: 'Санкт-Петербург' }
+//-     ]
+//- })
+
+//- //- 3. Label отдельно
+//- +select({
+//-     layout: 'separate',
+//-     label: 'Страна',
+//-     name: 'country',
+//-     options: [
+//-         { value: 'ru', label: 'Россия' },
+//-         { value: 'by', label: 'Беларусь' }
+//-     ],
+//-     selected: 'by'
+//- })
+
+//- //- 4. С ошибкой
+//- +select({
+//-     layout: 'error',
+//-     label: 'Регион',
+//-     name: 'region',
+//-     required: true,
+//-     error: 'Выберите регион',
+//-     options: [
+//-         { value: '', label: '-- Выберите --' },
+//-         { value: 'msk', label: 'Москва' },
+//-         { value: 'spb', label: 'СПб' }
+//-     ]
+//- })
+
+//- //- С дополнительными атрибутами
+//- +select({
+//-     layout: 'wrap',
+//-     label: 'Возраст',
+//-     name: 'age',
+//-     attrs: {
+//-         'data-custom': 'value'
+//-     },
+//-     options: [
+//-         { value: '18-25', label: '18-25' },
+//-         { value: '26-35', label: '26-35' }
+//-     ]
+//- })

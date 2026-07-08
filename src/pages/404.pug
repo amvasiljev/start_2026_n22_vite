@@ -1,0 +1,19 @@
+extends ../layouts/_layout.pug
+
+
+block variables
+    -var title = '404'
+    -var description = '404'
+    -var pageClass = ''
+    -var img = 'assets/img/'
+
+
+block content
+
+    +section({
+        type: '404',
+        attr: 'overflow relative round round-bottom-mobile color color-1',
+    })
+
+    section(data-app-section="")
+        div(data-app-container="")

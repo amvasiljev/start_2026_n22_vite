@@ -1,0 +1,56 @@
+mixin slider(attr,opts = {})
+    - const type = opts.type || 'default'
+
+    case type
+        when 'test'
+            div(data-app-slider=attr)
+                div(data-app-slider-options)
+                    +title('Lorem ipsum dolor','','','h2')
+
+                    div(data-app-slider-arrows="flex flex-end gap-20")
+                        
+
+                        +button({
+                            attr: 'slider-arrow h-44 accent-white',
+                            svg: true,
+                            icon: 'svg_arrow_slider',
+                            attrs: {
+                                'data-direction': 'prev'
+                            }
+                        })
+                        +button({
+                            attr: 'slider-arrow h-44 accent-white',
+                            svg: true,
+                            icon: 'svg_arrow_slider',
+                            attrs: {
+                                'data-direction': 'next'
+                            }
+                        })
+
+
+                    div(data-app-slider-pagination)
+                        .swiper-pagination
+                .swiper
+                    .swiper-wrapper
+                        .swiper-slide 
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                        .swiper-slide 
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                        .swiper-slide 
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                        .swiper-slide 
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.
+                            p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta, dignissimos.

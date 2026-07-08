@@ -1,0 +1,86 @@
+
+//- Шаблон для миксина card
+mixin card(opts = {})
+    //- Если type не передан, берем 'default'  
+    - const type = opts.type || 'default'
+    - const attr = opts.attr || ''
+    - const title = opts.title || ''
+    - const text = opts.text || ''
+    - const number = opts.number || ''
+    - const image = opts.image || ''
+    - const customAttrs = opts.attrs || {}  //- произвольные атрибуты
+    - const imageWidth = opts.imageWidht || ''
+    - const imageHeight = opts.imageHeight || ''
+    - const svg = opts.svg || false
+    - const icon = opts.icon || ''
+
+
+  
+    - var tag = 'article'
+    - var baseAttrs = { 'data-app-card': attr || '' }
+    - Object.assign(baseAttrs, customAttrs)
+
+
+    case type
+        when 'imageAndText'
+
+            #{tag}&attributes(baseAttrs)
+                if svg == true
+                    svg
+                        use(xlink:href=img + `sprite.svg#${icon}`)
+                else
+                    figure
+                        picture
+                            source(srcset=img + `card/webp/${image}.webp` type="image/webp")
+                            img(src=img + `card/${image}.png` alt="Описание" width=imageWidth height=imageHeight loading="lazy" decoding="async")
+                    
+                div
+                    h3= title
+                
+                    p= text
+
+
+        when 'imageSingle'
+            -var tag = 'figure'
+            #{tag}&attributes(baseAttrs)
+                picture
+                    source(srcset=img + `card/webp/${image}.webp` type="image/webp")
+                    img(src=img + `card/${image}.png` alt="Описание" width=400 height=300 loading="lazy" decoding="async")
+
+        when 'text'
+            #{tag}&attributes(baseAttrs)
+
+                h3= title
+                p= text
+                if number
+                    span= number
+        when 'imageAndTextSimple'
+             -var tag = 'div'
+                #{tag}&attributes(baseAttrs)
+                    svg
+                        use(xlink:href=img + `sprite.svg#${icon}`)
+                    p= text
+        default
+            #{tag}&attributes(baseAttrs)
+                figure
+                    picture
+                        source(srcset=img + 'card/avif/card_1.avif' type="image/avif")
+                        source(srcset=img + 'card/webp/card_1.webp' type="image/webp")
+                        img(src=img + 'card/card_1.png' alt="Описание" width=400 height=300 loading="lazy" decoding="async")
+                header()
+                    h3 Default
+                div
+                    p Default
+                footer
+                    +button({
+                        type:'link',
+                        text: 'more',
+                        attr: 'white',
+                        
+                    })
+
+
+//- +card({
+//-     type: 'type',
+//-     attr: 'attr',
+//- })

@@ -1,0 +1,23 @@
+include ./index
+
+mixin box(opts = {})
+
+    -
+        var dataAll = {
+            contact: typeof CONTACT_DATA !== 'undefined' ? CONTACT_DATA : {},
+            card: typeof CARD_DATA !== 'undefined' ? CARD_DATA : {},
+            //- number: typeof NUMBER_DATA !== 'undefined' ? NUMBER_DATA : {},
+            //- product: typeof PRODUCT_DATA !== 'undefined' ? PRODUCT_DATA : {},
+            //- team: typeof TEAM_DATA !== 'undefined' ? TEAM_DATA : {}
+        };
+    - const type = opts.type || 'default'
+
+    case type
+        when 'mainArea'
+            +boxMainArea(dataAll.card,opts)
+        when 'contactFooter'
+            +boxContactFooter(dataAll.contact,opts)
+        //- when 'numbers'
+        //-     +boxNumbers(dataAll.number,opts)
+        //- when 'numbersService'
+        //-     +boxNumbersService(dataAll.number,opts)

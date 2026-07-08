@@ -1,0 +1,26 @@
+[data-app-container~=header] {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    align-items: center;
+
+
+    @include m_768max{
+        nav{
+            display: none;
+        }
+    }
+}
+
+[data-app-header] {
+    width: 100%;
+    z-index: 100;
+}
+
+[data-app-header~=fixed] {
+
+    margin-bottom: -100px;
+
+    position: relative;
+    
+}

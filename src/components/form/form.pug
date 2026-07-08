@@ -1,0 +1,131 @@
+//- подключение инпутов и остального
+include ./index
+//- Шаблон для миксина form
+mixin form(opts = {})
+    //- Если type не передан, берем 'default'  
+    - const type = opts.type || 'default'
+    - const attr = opts.attr || ''
+    - const customAttrs = opts.attrs || {}  //- произвольные атрибуты
+    
+    - let baseAttrs = { 'data-app-form': attr || '' }
+    - Object.assign(baseAttrs, customAttrs)
+
+    case type
+        when 'type1'
+            div&attributes(baseAttrs)
+
+                form(action="/" enctype="multipart/form-data" id="form_feedback") 
+                    fieldset 
+                        legend(data-app-hidden="") Группировка элементов
+
+                        -
+                            const deliveryOptions = [
+                                { value: 'pickup', label: 'Самовывоз', small: 'Бесплатно', checked: true },
+                                { value: 'courier', label: 'Курьер', small: '300 ₽' },
+                                { value: 'post', label: 'Почта', small: '150 ₽' }
+                            ]
+
+                        each item in deliveryOptions
+                            +radio({
+                                name: 'delivery',
+                                value: item.value,
+                                label: item.label,
+                                small: item.small,
+                                checked: item.checked || false,
+                                required: true,
+                                svg: true
+                            })
+
+                        +checkbox({
+                            name: 'agree',
+                            label: 'Я принимаю условия <a href="/">Пользовательского соглашения</a>',
+                            svg: true,
+                            icon: 'svg_input_checkbox',
+                            required: true,
+                       
+                        })
+
+                        +input({
+                            layout: 'separate',
+                            label: 'Label 2',
+                            placeholder: 'text',
+                            required: true,
+                            placeholder: 'place',
+
+                            name: 'name',
+                            
+                            
+                        })
+
+                        
+                        +input({
+                            layout: 'separate',
+                            label: 'Phone',
+                            type: 'tel',
+                            name: 'tel',
+                            placeholder: '+7 (___) ___-__-__',
+                            attrs:{
+                                minlenght: 18,
+                            },
+                            required: true,
+                        })
+                        +input({
+                            layout: 'separate',
+                            label: 'Emain',
+                            type: 'email',
+                            name: 'email',
+                            placeholder: 'e-mail',
+
+                            required: true,
+                        })
+
+                        +textarea({
+                            layout: 'separate',
+                            name: 'text',
+                            placeholder: 'enter text',
+                            label: 'Enter text',
+                            required: false,
+
+                        })
+
+                    fieldset
+                        +button({
+                            type:'submit',
+                            text: 'Получить консультацию',
+                            attr: 'p-30 h-60 white',
+                        })
+                        div(data-app-policy)
+                            label
+                                input(type="checkbox" hidden data-check)
+                                svg
+                                    use(xlink:href= img + "sprite.svg#svg_input_checkbox")
+                                span Я подтверждаю свое Согласие на <a href="обработку персональных данных">обработку персональных данных</a> в соответствии c <a href="с политикой конфиденциальности">политикой конфиденциальности</a>.
+            
+
+
+        when 'type3'
+            div&attributes(baseAttrs)
+                //- содержимое для type2
+               
+
+        default
+            div&attributes(baseAttrs)
+                //- содержимое по умолчанию
+
+
+//- Примеры вызова:
+//- Простой вызов
+//- +form()
+
+//- С атрибутом
+//- +form({ attr: 'header' })
+
+//- С типом
+//- +form({ type: 'type1', attr: 'main' })
+
+//- С дополнительными атрибутами
+//- +form({ 
+//-     type: 'type1', 
+//-     attr: 'section',
+//-     attrs: { 'data-id': '123', 'data-custom': 'value' }
+//- })

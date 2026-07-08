@@ -1,0 +1,46 @@
+
+
+[data-app-container~=footer-area] {
+
+    display: grid;
+    grid-template-columns: 0.5fr 0.4fr 1fr;
+    grid-template-areas: "logo nav contact" "copy nav contact";
+    justify-content: space-between;
+    grid-gap: #{clampValue(1200, 1920, 20, 90)};
+
+    @include m_768_1200{
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas: "logo logo logo" "nav contact contact" "copy copy copy";
+    }
+
+    @include m_320{
+        grid-template-areas: "logo" "nav" "contact" "copy";
+        grid-template-columns: 1fr;
+    }
+    // [data-app-box] {
+    //     outline: 1px solid wheat;
+        
+    // }
+
+    [data-app-box~=logo] {
+        grid-area: logo;
+        
+    }
+    [data-app-box~=footer-copy] {
+        grid-area: copy;
+        
+    }
+    [data-app-box~=footer-nav] {
+        grid-area: nav;
+        
+    }
+    [data-app-box~=footer-contact] {
+
+        grid-area: contact;
+
+    }
+    // [data-app-button] {
+
+    //     grid-area: button;
+    // }
+}

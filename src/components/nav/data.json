@@ -1,0 +1,80 @@
+{
+  "navFooter": [
+    {
+      "name": "Главная",
+      "link": "",
+      "active": true,
+      "children": null
+    },
+    {
+      "name": "Личный кабинет — скоро",
+      "link": "#",
+      "active": false,
+      "children": null
+    },
+    {
+      "name": "О компании",
+      "link": "/about",
+      "active": false
+    },
+    {
+      "name": "Услуги",
+      "link": "/service",
+      "active": false,
+      "children": null
+    },
+    {
+      "name": "Контакты",
+      "link": "/contacts",
+      "active": false,
+      "children": null
+    }
+  ],
+  "navHeader": [
+    {
+      "name": "Главная",
+      "link": "",
+      "active": true,
+      "children": null
+    },
+    {
+      "name": "О компании",
+      "link": "/about",
+      "active": false,
+      "children": [
+        {
+          "name": "История",
+          "link": "/about/history/"
+        },
+        {
+          "name": "Команда",
+          "link": "/about/team/"
+        },
+        {
+          "name": "Вакансии",
+          "link": "/about/vacancies/"
+        },
+        {
+          "name": "Отзывы",
+          "link": "/about/reviews/"
+        },
+        {
+          "name": "Контакты",
+          "link": "/about/contacts/"
+        }
+      ]
+    },
+    {
+      "name": "Услуги",
+      "link": "/service",
+      "active": false,
+      "children": null
+    },
+    {
+      "name": "Контакты",
+      "link": "/contacts",
+      "active": false,
+      "children": null
+    }
+  ]
+}

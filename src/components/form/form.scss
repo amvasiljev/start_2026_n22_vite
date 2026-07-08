@@ -1,0 +1,242 @@
+[data-app-form] {
+
+    width: 100%;
+    position: relative;
+    z-index: 20;
+
+    section {
+
+        padding: 15px 20px 20px;
+        border-radius: 15px;
+        border: 1px solid transparent;
+        // height: auto;
+
+        h3,div {
+            font-size: #{clampValue(1024, 1920, 18, 24)};
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 14px;
+            font-weight: 300;
+            margin-top: 15px;
+        }
+    }
+
+
+
+    fieldset {
+        border: none;
+
+        &:last-child {
+
+            margin-top: 20px;
+            align-items: center;
+
+            @include m_320 {
+                margin-top: 5px;
+            }
+        }
+    }
+
+    label {
+        cursor: pointer;
+
+        span {
+            font-size: 16px;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 8px;
+            position: relative;
+
+            @include m_320 {
+                font-size: 14px;
+            }
+        }
+
+        span.error-message {
+            margin-bottom: 0;
+        }
+        span.error{
+            font-size: 12px;
+            margin-bottom: 0;
+            margin-top: 6px;
+            color: var(--color-warning)
+        }
+
+        sup {
+            position: absolute;
+            padding: 0 0 0 3px;
+            font-size: 16;
+            color: red;
+
+            @include m_320 {
+                font-size: 14px;
+            }
+        }
+
+        svg {
+            height: 22px;
+            width: 22px;
+            flex: none;
+
+            --color-1: #E4E1DB;
+            --color-2: transparent;
+            --color-3: var(--color-white);
+
+            // @include m_320 {}
+
+        }
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"] {
+
+        height: #{clampValue(600, 1440, 50, 68)};
+        border: 1px solid transparent;
+        width: 100%;
+        padding: 0 30px;
+        font-size: 16px;
+
+        @include m_320 {
+            padding: 0 16px;
+        }
+
+    }
+
+    input[type="text"].is-invalid,
+    input[type="tel"].is-invalid,
+    input[type="email"].is-invalid {
+        border-color: var(--color-warning);
+    }
+
+
+    input[type="checkbox"]:checked~svg {
+        --color-1: var(--color-main);
+        --color-2: var(--color-main);
+
+    }
+
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    input[type="file"] {
+        display: none;
+        pointer-events: none;
+    }
+
+    [data-app-button] {
+        flex: none;
+
+        @include m_320 {
+            width: 100%;
+        }
+    }
+
+    .file-trigger {
+
+        span {
+            font-size: 16px;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 8px;
+
+            @include m_320 {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .files-list {
+        padding: 10px 0 0 0;
+    }
+
+    .delete-file {
+        cursor: pointer;
+    }
+
+    .file-button {
+        height: #{clampValue(600, 1440, 50, 68)};
+        border: 1px dashed transparent;
+        width: 100%;
+        padding: 0 30px;
+        font-size: 16px;
+        background-color: transparent;
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        svg {
+            height: 28px;
+            width: 28px;
+            flex: none;
+        }
+
+        span {
+            margin-bottom: 0;
+        }
+    }
+
+
+}
+
+[data-app-form~=default] {
+    color: var(--color-main);
+
+    fieldset {
+        border: none;
+
+        &:last-child {
+
+            margin-top: 20px;
+            align-items: center;
+
+            @include m_320 {
+                margin-top: 5px;
+            }
+        }
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"] {
+        border: 1px solid var(--color-main);
+
+        color: var(--color-main);
+
+        &::placeholder {
+            color: var(--color-main);
+        }
+    }
+}
+
+
+
+[data-app-policy] {
+    label {
+        display: flex;
+        gap: 16px;
+
+        svg {
+            // margin-top: 6px;
+        }
+
+        span {
+            font-size: 14px;
+            font-weight: 400;
+
+            @include m_320 {
+                font-size: 12px;
+            }
+        }
+
+        a {
+            // color: var(--color-main);
+            text-decoration: underline;
+        }
+    }
+}

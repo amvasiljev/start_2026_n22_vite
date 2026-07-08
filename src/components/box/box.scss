@@ -1,0 +1,560 @@
+[data-app-box] {
+
+    // &>* {
+    //     outline: 1px solid wheat;
+    // }
+}
+
+
+[data-app-box~=flex] {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+
+    @include m_320 {
+        flex-direction: column;
+        gap: 35px;
+    }
+
+    [data-app-card] {
+
+        flex: 0 0 316px;
+
+
+
+        @include m_320 {
+            flex: unset;
+
+            &:nth-child(1) {
+                display: none;
+            }
+
+            &:nth-child(2) {
+                display: none;
+            }
+
+            &:nth-child(3) {
+                aspect-ratio: 355/405;
+            }
+
+            &:nth-child(5) {
+                aspect-ratio: 355/200;
+            }
+        }
+
+    }
+
+    [data-app-title] {
+        flex: 0 0 #{clampValue(1200, 1920, 400, 616)};
+
+        @include m_320 {
+            flex: unset;
+        }
+
+    }
+
+}
+
+[data-app-box~=grid] {
+    display: grid;
+
+
+}
+
+[data-app-box~=grid-2] {
+    grid-template-columns: repeat(2, 1fr);
+
+    @include m_768max {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+[data-app-box~=grid-3] {
+    grid-template-columns: repeat(3, 1fr);
+
+    @include m_320 {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+}
+
+[data-app-box~=grid-4] {
+    grid-template-columns: repeat(4, 1fr);
+
+    @include m_768 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include m_320 {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))
+    }
+
+}
+
+[data-app-box~=gap-25] {
+    grid-gap: #{clampValue(600, 1920, 10, 25)};
+
+}
+
+[data-app-box~=gap-30] {
+    grid-gap: #{clampValue(600, 1920, 10, 30)}
+}
+
+[data-app-box~=gap-20-50] {
+    grid-gap: #{clampValue(600, 1920, 20, 50)};
+
+}
+
+[data-app-box~=gap-30-50] {
+    grid-gap: #{clampValue(600, 1920, 30, 50)};
+
+}
+
+
+[data-app-box~=center-v] {
+    align-items: center;
+
+}
+
+[data-app-box~=why-area] {
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "title b1 b2" "title b3 b4" "title b5 b6";
+
+    @include m_768 {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "title title" "b1 b2" "b3 b4" "b5 b6";
+    }
+
+    @include m_320 {
+        grid-template-columns: 1fr;
+        grid-template-areas: "title" "b1" "b2" "b3" "b4" "b5" "b6";
+    }
+
+    [data-app-title] {
+        grid-area: title;
+
+    }
+
+    [data-app-card] {
+        &:nth-child(2) {
+            grid-area: b1;
+        }
+
+    }
+
+    [data-app-card] {
+        &:nth-child(3) {
+            grid-area: b2;
+        }
+
+    }
+
+    [data-app-card] {
+        &:nth-child(4) {
+            grid-area: b3;
+        }
+
+    }
+
+    [data-app-card] {
+        &:nth-child(5) {
+            grid-area: b4;
+        }
+
+    }
+
+    [data-app-card] {
+        &:nth-child(6) {
+            grid-area: b5;
+        }
+
+    }
+
+    [data-app-card] {
+        &:nth-child(7) {
+            grid-area: b6;
+        }
+
+    }
+
+}
+
+[data-app-box~=numbers-area] {
+
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "title b1 b2 b3" "- b4 b5 b6";
+
+
+    @include m_1024 {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas: "title title title" "b1 b2 b3" "b4 b5 b6";
+    }
+
+    @include m_768 {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "title title" "b1 b2" "b3 b4" "b5 b6";
+    }
+
+    @include m_320 {
+        grid-template-columns: 1fr;
+        grid-template-areas: "title" "b1" "b2" "b3" "b4" "b5" "b6";
+        justify-content: center;
+        align-items: center;
+    }
+
+    [data-app-title] {
+        grid-area: title;
+
+    }
+
+    [data-app-number] {
+
+        &:nth-child(2) {
+            grid-area: b1;
+
+            position: relative;
+
+            &:before {
+                content: '';
+                position: absolute;
+                height: 1px;
+                width: 3000px;
+                border: 1px dashed rgba(151, 71, 255, 1);
+                border-image: repeating-linear-gradient(90deg,
+                        rgba(151, 71, 255, 1) 0,
+                        rgba(151, 71, 255, 1) 10px,
+                        transparent 10px,
+                        transparent 15px) 1;
+                bottom: -25px;
+                left: -1000px;
+
+                @include m_768max {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    [data-app-number] {
+
+        &:nth-child(3) {
+            grid-area: b2;
+        }
+    }
+
+    [data-app-number] {
+
+        &:nth-child(4) {
+            grid-area: b3;
+        }
+    }
+
+    [data-app-number] {
+
+        &:nth-child(5) {
+            grid-area: b4;
+        }
+    }
+
+    [data-app-number] {
+
+        &:nth-child(6) {
+            grid-area: b5;
+        }
+    }
+
+    [data-app-number] {
+
+        &:nth-child(7) {
+            grid-area: b6;
+        }
+    }
+
+}
+
+[data-app-box~=about-area] {
+
+    grid-template-columns: repeat(9, 1fr);
+    grid-auto-rows: 170px;
+
+    grid-template-areas: "text1 text1 text1 icon1 text2 text2 image1 image1 image1"
+        "image2 image2 text3 text3 text3 icon2 image1 image1 image1"
+        "icon3 text4 text4 text4 image3 image3 text5 text5 text5";
+
+    @include m_768_1200 {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "text1 text2" "text3 image1" "image2 text4" "text5 image3"
+
+
+    }
+
+
+    @include m_320 {
+        grid-template-columns: 1fr;
+        grid-template-areas: "text1" "text2" "image2" "text3" "text4" "text5" "image3";
+        grid-auto-rows: auto;
+    }
+
+    [data-app-card] {
+
+        &:nth-child(1) {
+            grid-area: text1;
+
+            @include m_768_1200 {}
+
+            @include m_320 {}
+        }
+
+        &:nth-child(2) {
+            grid-area: icon1;
+
+            @include m_768_1200 {
+
+                display: none;
+            }
+
+            @include m_320 {
+
+
+                display: none;
+            }
+        }
+
+        &:nth-child(3) {
+            grid-area: text2;
+
+            @include m_768_1200 {}
+
+            @include m_320 {}
+        }
+
+        &:nth-child(4) {
+            grid-area: image1;
+
+            @include m_768_1200 {}
+
+            @include m_320 {
+                display: none;
+
+
+            }
+        }
+
+        &:nth-child(5) {
+            grid-area: image2;
+
+            @include m_768_1200 {}
+
+            @include m_320 {
+                // 
+                aspect-ratio: 355/177;
+            }
+        }
+
+        &:nth-child(6) {
+            grid-area: text3;
+
+            @include m_768_1200 {}
+
+            @include m_320 {}
+        }
+
+        &:nth-child(7) {
+            grid-area: icon2;
+
+            @include m_768_1200 {
+
+                display: none;
+            }
+
+            @include m_320 {
+                display: none;
+
+            }
+        }
+
+        &:nth-child(8) {
+            grid-area: icon3;
+
+            @include m_768_1200 {
+
+                display: none;
+            }
+
+            @include m_320 {
+                display: none;
+
+            }
+        }
+
+        &:nth-child(9) {
+            grid-area: text4;
+
+            @include m_768_1200 {}
+
+            @include m_320 {}
+        }
+
+        &:nth-child(10) {
+            grid-area: image3;
+
+            @include m_768_1200 {}
+
+            @include m_320 {
+
+                aspect-ratio: 355/177;
+            }
+        }
+
+        &:nth-child(11) {
+            grid-area: text5;
+
+            @include m_768_1200 {}
+
+            @include m_320 {}
+        }
+    }
+
+    [data-app-card~=icon] {
+        width: 170px;
+        // aspect-ratio: 1/1;
+
+    }
+}
+
+[data-app-box~=service-area] {
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "title title b3" "b1 b2 b3";
+
+
+    @include m_768_1200 {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "title title" "b3 b3" "b1 b2";
+    }
+
+    @include m_320 {
+        grid-template-columns: 1fr;
+        grid-template-areas: "title" "b3" "b1" "b2";
+    }
+
+    [data-app-title] {
+        grid-area: title;
+
+    }
+
+    [data-app-number] {
+
+        &:nth-child(2) {
+            grid-area: b1;
+        }
+
+        &:nth-child(3) {
+            grid-area: b2;
+        }
+
+        &:nth-child(4) {
+            grid-area: b3;
+        }
+
+    }
+
+}
+
+[data-app-box~=logo] {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include m_320{
+        align-items: center;
+  
+    }
+    p {
+        font-size: #{clampValue(1200, 1920, 14, 16)};
+        color: var(--color-white);
+        line-height: 22px;
+        @include m_320{
+            text-align: center;
+        }
+    }
+}
+
+[data-app-box~=nav] {
+    p {
+        font-size: 18px;
+        text-transform: uppercase;
+        color: var(--color-white);
+        font-weight: 500;
+        line-height: 22px;
+        margin-bottom: 30px;
+
+        @include m_320{
+            text-align: center;
+        }
+    }
+
+    li,
+    a {
+        font-size: 16px;
+        color: var(--color-white);
+
+        @include m_320{
+            text-align: center;
+        }
+
+    }
+
+   
+}
+
+[data-app-box~=footer-copy] {
+
+    p,
+    a,
+    li {
+        color: var(--color-white);
+        font-size: #{clampValue(1200, 1920, 14, 16)};
+        font-weight: 400;
+        line-height: 22px;
+        @include m_320{
+            text-align: center;
+        }
+        
+    }
+    a{
+        text-decoration: underline;
+    }
+    li{
+        &:not(:last-child){
+            margin-bottom: 20px;
+        }
+    }
+}
+
+[data-app-box~=footer-contact] {
+    display: flex;
+    flex-direction: column;
+    @include m_320{
+        align-items: center;
+      
+    }
+
+    [data-app-button] {
+        align-self: flex-end;
+        margin: auto 0 0 0;
+
+        @include m_320{
+            margin: 30px 0 0 0;
+            align-self: center;
+        }
+        
+    }
+     li {
+        &:not(:last-child) {
+            margin-bottom: 30px;
+        }
+    }
+}

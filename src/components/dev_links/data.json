@@ -1,0 +1,36 @@
+{
+  "links": [
+    {
+      "title": "Главная",
+      "link": "/"
+    },
+    {
+      "title": "О компании",
+      "link": "about"
+    },
+    {
+      "title": "Услуги",
+      "link": "service"
+    },
+    {
+      "title": "Контакты",
+      "link": "contacts"
+    },
+    {
+      "title": "Политика",
+      "link": "policy"
+    },
+    {
+      "title": "404",
+      "link": "404"
+    },
+    {
+      "title": "Текстовая",
+      "link": "page_text"
+    },
+    {
+      "title": "Диалоги",
+      "link": "dialogs"
+    }
+  ]
+}

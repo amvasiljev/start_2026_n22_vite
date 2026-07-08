@@ -1,0 +1,75 @@
+[data-app-dialog]{
+
+    
+}
+
+[data-app-dialog] {
+    // display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    h3 {
+        font-size: #{clampValue(600, 1440, 20, 30)};
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+
+        color: var(--color-main);
+    }
+
+    p {
+        font-size: #{clampValue(600, 1440, 16, 20)};
+        font-weight: 400;
+        color: var(--color-main);
+        text-align: center;
+    }
+}
+
+[data-app-dialog].fancybox__content {
+    padding: #{clampValue(600, 1440, 40, 60)} #{clampValue(600, 1440, 20, 60)};
+    background-color: var(--color-white);
+    // border-radius: 20px;
+}
+
+[data-app-dialog~=thanks] {
+
+    svg {
+        height: 65px;
+        width: 65px;
+        
+    }
+}
+
+
+[data-app-dialog~=thanks].fancybox__content {
+
+    max-width: 380px;
+
+    @include m_320 {
+        max-width: 310px;
+        padding: 34px 25px;
+        border-radius: 15px;
+    }
+}
+
+[data-app-dialog~=callback].fancybox__content {
+    max-width: 500px;
+
+}
+
+
+
+.fancybox__container>.fancybox__backdrop {
+    background-color: rgba(23, 23, 23, 0.65);
+}
+
+.fancybox__container.is-compact .fancybox__content>.f-button.is-close-btn {
+    @include m_320 {
+        top: -38px;
+        background-color: transparent;
+    }
+}

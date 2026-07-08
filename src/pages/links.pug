@@ -1,0 +1,25 @@
+extends ../layouts/_layout.pug
+
+include ../components/dev_links/dev_links
+
+block variables
+    -var title = 'Ссылки'
+    -var description = 'links'
+    -var pageClass = ''
+    -var img = 'assets/img/'
+block content
+    +section({
+        type: 'text',
+        attr: 'overflow relative round color color-1',
+        crumbs: [
+            {name: 'Главная'},
+            {name: title}
+        ],
+        titleText: title
+    })
+    
+
+    section(data-app-section="")
+        div(data-app-container="")
+            
+            +dev_links()

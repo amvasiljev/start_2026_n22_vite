@@ -1,0 +1,34 @@
+//- src/components/title/title.pug
+mixin title(opts = {})
+    //- Данные из define
+    - const titleData = typeof TITLE_DATA !== 'undefined' ? TITLE_DATA : {};
+    
+    //- Если передан preset — берем из titleData
+    - const presetName = opts.preset || false
+    - const preset = presetName && titleData[presetName] ? titleData[presetName] : {}
+    
+    //- Сливаем: пресет + переданные параметры (переопределяют)
+    - const merged = Object.assign({}, preset, opts)
+    - delete merged.preset
+    - const attrAdd = merged.attrAdd || ''
+    - const type = merged.type || 'h1'
+    - const attr = merged.attr || ''
+    - const text = merged.text || ''
+    - const subtext = merged.subtext || ''
+    - const subtextLink = merged.subtextLink || false
+    - const subtextLinkAttrs = merged.subtextLinkAttrs || {}
+    - const customAttrs = merged.attrs || {}
+    
+    - const hasSubtext = subtext && subtext.length > 0
+    - const baseAttrs = { 'data-app-title': attr || '' }
+    - Object.assign(baseAttrs, customAttrs)
+    - if (attrAdd && attrAdd.length > 0) {
+    -     baseAttrs['data-app-title'] = baseAttrs['data-app-title'] + ' ' + attrAdd
+    - }
+    div&attributes(baseAttrs)
+        #{type}&attributes({})!= text
+        if hasSubtext
+            if subtextLink
+                a(href=subtextLink)&attributes(subtextLinkAttrs)!= subtext
+            else
+                p!= subtext

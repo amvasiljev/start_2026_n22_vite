@@ -1,0 +1,21 @@
+mixin cookies()
+
+    div(data-app-cookies hidden)
+        div 
+            p Наш сайт использует cookies.
+            p Если вы&nbsp;продолжаете использовать сайт, то&nbsp;вы&nbsp;соглашаетесь с&nbsp;условиями использования. <a href="/">Подробнее</a>
+            //- .cookies__close.button.button_transparent Принять
+
+            +button({
+                attr:'p32 h66 round white cookies',
+                text:'Принять',
+                ariaLabel: 'Принять'
+            })
+
+
+            +button({
+                attr:'cross white',
+                svg: true,
+                icon:'svg_close',
+                ariaLabel: 'Закрыть на будущее'
+            })

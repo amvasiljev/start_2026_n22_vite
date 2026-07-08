@@ -1,0 +1,35 @@
+//- Шаблон для миксина boxContactFooter
+include ../contact/contact
+mixin boxContactFooter(data,opts = {})
+    //- Если type не передан, берем 'default'  
+    - const type = opts.type || 'default'
+    - const attr = opts.attr || ''
+    - const customAttrs = opts.attrs || {}  //- произвольные атрибуты
+    
+    - let baseAttrs = { 'data-app-box': attr || '' }
+    - Object.assign(baseAttrs, customAttrs)
+    //- - const datacontactFooter = require('@blocks/contact/data.json')
+
+    div&attributes(baseAttrs)
+        
+        p Контакты
+        ul
+            each item in data.contactFooter
+                li
+                    +contact({
+                        type: item.type,
+                        attr: item.attr,
+                        value: item.value,
+                        text:  item.text,
+                    })
+        +button({
+            type:'fancybox',
+            text: 'Оставить запрос',
+            svg: true,
+            icon: 'svg_button_move',
+            linkId: '#popup_thanks',
+            attr: 'gradient gradblue move h-70  round fsz-18',
+            moveBlock: true
+        })
+    
+

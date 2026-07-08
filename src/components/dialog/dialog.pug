@@ -1,0 +1,48 @@
+mixin dialog(opts = {})
+    //- Если type не передан, берем 'default'  
+    - const type = opts.type || 'default'
+    - const attr = opts.attr || ''
+    - const customAttrs = opts.attrs || {}  //- произвольные атрибуты
+    
+    - let baseAttrs = { 'data-app-dialog': attr || '' }
+    - Object.assign(baseAttrs, customAttrs)
+
+    case type
+        when 'type1'
+            div&attributes(baseAttrs)
+                //- содержимое для type1
+                h3 Lorem, ipsum.
+                p Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, delectus.
+                +form({
+                    type: 'type1'
+                })
+
+        when 'type2'
+            div&attributes(baseAttrs)
+                //- содержимое для type2
+                svg(class="")
+                    use(xlink:href= img + "sprite.svg#svg_popup_thanks")
+                h3 Спасибо!
+                p Данные успешно отправлены!
+
+        default
+            div&attributes(baseAttrs)
+                //- содержимое по умолчанию
+
+
+//- Примеры вызова:
+//- Простой вызов
+//- +dialog()
+
+//- С атрибутом
+//- +dialog({ attr: 'header' })
+
+//- С типом
+//- +dialog({ type: 'type1', attr: 'main' })
+
+//- С дополнительными атрибутами
+//- +dialog({ 
+//-     type: 'type1', 
+//-     attr: 'section',
+//-     attrs: { 'data-id': '123', 'data-custom': 'value' }
+//- })

@@ -1,0 +1,85 @@
+//- Шаблон для миксина faq
+mixin faq(opts = {})
+    //- Если type не передан, берем 'default'  
+    - const type = opts.type || 'default'
+    - const attr = opts.attr || ''
+    - const customAttrs = opts.attrs || {}  //- произвольные атрибуты
+    
+    - let baseAttrs = { 'data-app-faq': attr || '' }
+    - Object.assign(baseAttrs, customAttrs)
+
+    case type
+        when 'type1'
+            div&attributes(baseAttrs)
+                //- содержимое для type1
+                -
+                    const faqQuestions = [
+                        'Вопрос 1',
+                        'Вопрос 2',
+                        //- 'Можно ли самому сделать замер?',
+                        //- 'Когда лучше ставить окна — до начала ремонта или после?',
+                        //- 'Сколько лет действует гарантия и на что?',
+                        //- 'Как долго служат пластиковые окна Melke?',
+                    ]
+
+
+                div(data-app-faq-list itemscope itemtype="https://schema.org/FAQPage")
+                    each question, index in faqQuestions
+                        details(
+                            itemscope 
+                            itemprop="mainEntity" 
+                            itemtype="https://schema.org/Question"
+                            open=(index === 0 ? 'open' : null)
+                        )
+                            summary
+                                span(itemprop="name")= question
+
+                                +button({
+                                    tag: 'span',
+                                    attr: 'faq h-44',
+                                    svg: true,
+                                    icon: 'svg_arrow_default',
+                                    attrs: {
+                                        'type':false,
+                                        'aria-label': false,
+                                        'aria-hidden': 'true',
+                                    }
+                                })
+                            div(itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer")
+                                div(itemprop="text")
+                                    p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, eum.
+                                    p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, eum.
+                                    p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, eum.
+                                    p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, eum.
+        
+
+        when 'type2'
+            section&attributes(baseAttrs)
+                //- содержимое для type2
+               
+
+        default
+            div&attributes(baseAttrs)
+                //- содержимое по умолчанию
+
+
+
+
+
+
+//- Примеры вызова:
+//- Простой вызов
+//- +faq()
+
+//- С атрибутом
+//- +faq({ attr: 'header' })
+
+//- С типом
+//- +faq({ type: 'type1', attr: 'main' })
+
+//- С дополнительными атрибутами
+//- +faq({ 
+//-     type: 'type1', 
+//-     attr: 'section',
+//-     attrs: { 'data-id': '123', 'data-custom': 'value' }
+//- })

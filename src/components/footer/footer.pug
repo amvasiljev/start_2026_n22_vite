@@ -1,0 +1,43 @@
+
+mixin footer(attr)
+    footer(data-app-section="overflow relative round round-top-mobile color color-1 footer")
+        picture
+            source(srcset=img + 'card/avif/card_1.avif' type="image/avif")
+            source(srcset=img + 'card/webp/card_1.webp' type="image/webp")
+            img(src=img + 'card/card_1.jpg' alt="description" width=1888 height=944 loading="lazy" decoding="async")
+        
+        
+        div(data-app-container="full grid footer-area pt-100 pb-60")
+            div(data-app-box="logo")
+                +logo({
+                    type: 'link',
+                    attr: 'color-white footer',
+                    logoType: 'img',
+                    imgFolder: 'logo',
+                    width: 323,
+                    height: 32
+                })
+                p Текст слогана по логотипом
+            dif(data-app-box="footer-copy")
+                ul 
+                    li 
+                        a(href="/page_text")  Политика конфиденциальности
+                    li © 2026 ООО «Название компании»
+
+            div(data-app-box="nav footer-nav")
+                p Навигация по сайту
+                +nav({
+                    type:'footer',
+                    attr:'footer color-white',
+                    maxLevel: 2,
+                    ariaLabel: 'Close menu'
+                })
+
+            +box({
+                type:'contactFooter',
+                attr: 'nav footer-contact'
+            })
+
+                
+
+        

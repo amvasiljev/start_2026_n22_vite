@@ -1,0 +1,23 @@
+//- Шаблон для миксина boxMainArea
+include ../card/card
+mixin boxMainArea(data,opts = {})
+ 
+    - const type = opts.type || 'default'
+    - const attr = opts.attr || ''
+    - const customAttrs = opts.attrs || {}  //- произвольные атрибуты
+    
+    - let baseAttrs = { 'data-app-box': attr || '' }
+    - Object.assign(baseAttrs, customAttrs)
+
+    div&attributes(baseAttrs)
+        each item in data.about
+            +card({
+                title: item.title,
+                text: item.text,
+                type: item.type,
+                image: item.image,
+                attr: item.attr,
+                number: item.number
+            })
+            
+

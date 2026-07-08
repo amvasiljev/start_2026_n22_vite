@@ -1,0 +1,40 @@
+mixin checkbox(opts = {})
+    - const name = opts.name || ''
+    - const value = opts.value || 'on'
+    - const checked = opts.checked || false
+    - const required = opts.required || false
+    - const label = opts.label || ''
+    - const small = opts.small || ''
+    - const error = opts.error || ''
+    - const svg = opts.svg || false
+    - const icon = opts.icon || 'svg_checkbox'
+    - const customAttrs = opts.attrs || {}
+    
+    - let inputAttrs = { 'type': 'checkbox', 'name': name, 'value': value }
+    
+    if checked
+        - inputAttrs.checked = true
+    if required
+        - inputAttrs.required = true
+    
+    - Object.assign(inputAttrs, customAttrs)
+    
+    label
+        input&attributes(inputAttrs)
+        if svg
+            svg
+                use(xlink:href=img + `sprite.svg#${icon}`)
+        
+        if small
+            div
+                span !{label}
+                    if required
+                        sup *
+                small= small
+        else
+            span !{label}
+                if required
+                    sup *
+        
+        if error
+            span(class="error-message")= error

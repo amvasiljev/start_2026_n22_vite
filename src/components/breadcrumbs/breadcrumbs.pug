@@ -1,0 +1,75 @@
+mixin breadcrumbs(opts = {})
+    - const attr = opts.attr || ''
+    - const items = opts.items || []
+    - const separator = opts.separator || '/' // текст или 'arrow'
+    - const separatorIcon = opts.separatorIcon || 'svg_arrow_default'
+    - const imgPath = opts.img || img
+    - const customAttrs = opts.attrs || {}
+    
+    nav(aria-label="Хлебные крошки" data-app-crumbs= attr)&attributes(customAttrs)
+        ol(itemscope itemtype="https://schema.org/BreadcrumbList")
+            each item, index in items
+                - const position = index + 1
+                - const isCurrent = item.current || (index === items.length - 1 && !item.link)
+                - const showSeparator = !isCurrent && index < items.length - 1
+                
+                li(itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem")
+                    if isCurrent
+                        span(itemprop="item")
+                            span(itemprop="name")= item.name
+                    else
+                        a(
+                            href=item.link || '/'
+                            itemprop="item"
+                        )
+                            span(itemprop="name")= item.name
+                    if showSeparator
+                        span(aria-hidden="true")
+                            if separator === 'arrow'
+                                svg(aria-label="Разделитель")
+                                    use(xlink:href= imgPath + `sprite.svg#${separatorIcon}`)
+                            else
+                                | #{separator}
+                    meta(itemprop="position" content=position)
+
+
+//- //- По умолчанию - слеш
+//- +breadcrumbs({ 
+//-     attr: 'white',
+//-     items: [
+//-         { name: 'Главная', link: '/' },
+//-         { name: 'Категория', link: '/category/' },
+//-         { name: 'Текущая страница' }
+//-     ]
+//- })
+
+//- //- С иконкой (стрелка)
+//- +breadcrumbs({ 
+//-     attr: 'white',
+//-     separator: 'arrow',
+//-     separatorIcon: 'svg_arrow_default',
+//-     items: [...]
+//- })
+
+//- //- С кастомным текстовым разделителем
+//- +breadcrumbs({ 
+//-     attr: 'white',
+//-     separator: 'slash',
+//-     separatorText: '→',
+//-     items: [...]
+//- })
+
+//- //- С кастомным HTML разделителем
+//- +breadcrumbs({ 
+//-     attr: 'white',
+//-     separator: 'custom',
+//-     separatorHtml: '<span class="sep">|</span>',
+//-     items: [...]
+//- })
+
+//- //- Без разделителя
+//- +breadcrumbs({ 
+//-     attr: 'white',
+//-     separator: 'none',
+//-     items: [...]
+//- })

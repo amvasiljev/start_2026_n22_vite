@@ -1,0 +1,18 @@
+//- Шаблон для миксина section
+include ./index.pug
+mixin section(opts = {})
+
+    - const type = opts.type || 'default'
+
+    case type
+        when 'main'
+            +sectionMain(opts)
+        when 'text'
+            +sectionText(opts)
+        when '404'
+            +section404(opts)
+        default
+            div&attributes(baseAttrs)
+
+                p lorem default
+

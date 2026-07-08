@@ -1,0 +1,71 @@
+mixin textarea(opts = {})
+    - const name = opts.name || ''
+    - const value = opts.value || ''
+    - const placeholder = opts.placeholder || ''
+    - const rows = opts.rows || 3
+    - const cols = opts.cols || ''
+    - const required = opts.required || false
+    - const error = opts.error || ''
+    - const label = opts.label || ''
+    - const id = opts.id || ''
+    - const layout = opts.layout || 'simple'
+    - const customAttrs = opts.attrs || {}
+    
+    - const hasLabel = label !== false && label !== ''
+    - const inputId = id || `textarea-${Math.random().toString(36).slice(2, 8)}`
+    - const errorId = `${inputId}-error`
+    
+    - let textareaAttrs = { 'name': name, 'rows': rows, 'placeholder': placeholder,'id': inputId}
+    
+    if cols
+        - textareaAttrs.cols = cols
+    
+    //- ARIA: обязательное поле
+    if required
+        - textareaAttrs.required = true
+        - textareaAttrs['aria-required'] = 'true'
+    
+    //- ARIA: ошибка
+    if error
+        - textareaAttrs.class = 'error'
+        - textareaAttrs['aria-invalid'] = 'true'
+        - textareaAttrs['aria-describedby'] = errorId
+    else
+        - textareaAttrs['aria-invalid'] = 'false'
+    
+    - Object.assign(textareaAttrs, customAttrs)
+    
+    //- Функция для вывода ошибки
+    mixin errorBlock
+        if error
+            span(
+                id=errorId
+                class="error-message"
+                role="alert"
+                aria-live="polite"
+            )= error
+    
+    case layout
+        when 'simple'
+            textarea&attributes(textareaAttrs)= value
+            +errorBlock
+        
+        when 'wrap'
+            label
+                if hasLabel
+                    span
+                        | #{label}
+                        if required
+                            sup(aria-hidden="true") *
+                textarea&attributes(textareaAttrs)= value
+                +errorBlock
+        
+        when 'separate'
+            if hasLabel
+                label(for=inputId)
+                    span
+                        | #{label}
+                        if required
+                            sup(aria-hidden="true") *
+            textarea(id=inputId)&attributes(textareaAttrs)= value
+            +errorBlock

@@ -1,0 +1,73 @@
+
+
+mixin renderMenu(items, hasIcons = false, currentLevel = 1, maxLevel = 3, sortFirst = false)
+    - let menuItemsList = items
+    if sortFirst && items
+        - const withChildren = []
+        - const withoutChildren = []
+        each item in items
+            if item.children && item.children.length
+                - withChildren.push(item)
+            else
+                - withoutChildren.push(item)
+        - menuItemsList = withChildren.concat(withoutChildren)
+    ul
+        each item in menuItemsList
+            li
+                a(href=item.link, class=item.active ? 'active' : null)
+                    span= item.name
+                    if hasIcons && item.children && item.children.length && currentLevel < maxLevel
+                        svg(class="")
+                            use(xlink:href=img + 'sprite.svg#svg_arrow_nav')
+                if item.children && item.children.length && currentLevel < maxLevel
+                    +renderMenu(item.children, hasIcons, currentLevel + 1, maxLevel, sortFirst)
+
+mixin nav(opts = {})
+    - const type = opts.type || 'default'
+    - const attr = opts.attr || ''
+    - const hasIcons = opts.hasIcons || false
+    - const maxLevel = opts.maxLevel || 3
+    - const sortGroupedFirst = opts.sortGroupedFirst || false
+    //- - const dataNav = require('@blocks/nav/data.json')
+
+    - const navData = typeof NAV_DATA !== 'undefined' ? NAV_DATA : {};
+    case type
+        when 'header'
+            nav(data-app-nav= attr aria-label="Основная навигация")
+                +renderMenu(navData.navHeader, false, 1, maxLevel, sortGroupedFirst)
+                //- +button({
+                //-     attr: 'default nav',
+                //-     svg: true,
+                //-     icon: 'svg_arrow_nav',
+                //-     attrs: {
+                //-         'data-template-btn': 'true',
+                //-         'aria-label': 'Открыть подменю',
+                //-         'aria-expanded': 'false',
+                //-         'aria-haspopup': 'true'
+                //-     }
+                //- })
+        when 'footer'
+            nav(data-app-nav= attr aria-label="Навигация по сайту")
+                +renderMenu(navData.navFooter, false, 1, maxLevel, sortGroupedFirst)  // с сортировкой если нужно
+                //- +button({
+                //-     attr: 'default nav',
+                //-     svg: true,
+                //-     icon: 'svg_arrow_nav',
+                //-     attrs: {
+                //-         'data-template-btn': 'true',
+                //-         'aria-label': 'Открыть подменю',
+                //-         'aria-expanded': 'false',
+                //-         'aria-haspopup': 'true'
+                //-     }
+                //- })
+        default
+            nav(data-app-nav= attr)
+                +renderMenu(navData, hasIcons, 1, maxLevel)
+
+//- +nav({
+//-     type:'header',
+//-     attr: 'header js',
+//-     maxLevel: 3,
+//-     sortGroupedFirst: false
+//- })
+

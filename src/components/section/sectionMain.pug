@@ -1,0 +1,22 @@
+//- Шаблон для миксина sectionMain
+mixin sectionMain(opts = {})
+    - const type = opts.type || 'default'
+    - const attr = opts.attr || ''
+    - const customAttrs = opts.attrs || {}  //- произвольные атрибуты
+    - const crumbs = opts.crumbs || []
+    - const titleText = opts.titleText || ''
+    - let baseAttrs = { 'data-app-section': attr || '' }
+    - Object.assign(baseAttrs, customAttrs)
+
+    section&attributes(baseAttrs)
+        
+        picture
+            source(srcset=img + 'card/avif/card_1.avif' type="image/avif")
+            source(srcset=img + 'card/webp/card_1.webp' type="image/webp")
+            img(src=img + 'card/card_1.jpg' alt="description" width=1888 height=944 loading="lazy" decoding="async")
+        
+        div(data-app-container="pt-354 pb-250")
+            +title({
+                preset: 'heroMain',
+                attrAdd: 'mobile-center asdf'
+            })

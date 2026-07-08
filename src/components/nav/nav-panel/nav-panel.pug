@@ -1,0 +1,26 @@
+mixin nav-panel()
+    div(data-app-nav-panel)
+        div
+            +logo({
+                attr: 'header color-white'
+            })
+
+
+            +button({
+                attr: 'panel-close h-44',
+                svg: true,
+                icon:'svg_close',
+            })
+
+  
+        +nav({
+            type:'header',
+            attr:'mobile',
+            maxLevel: 2,
+            ariaLabel: 'Close menu',
+            
+        })
+            
+        div
+            //- +contact('','','','contactMobile')
+            //- +social('color-white size-50','header','')

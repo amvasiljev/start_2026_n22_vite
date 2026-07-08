@@ -1,0 +1,75 @@
+// ---------- Переменные ---------- //
+
+// добавил для красоты
+
+@use "sass:math";
+
+@function to-rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+@function clampValue($min-vw, $max-vw, $min-px, $max-px) {
+  @if ($max-vw ==$min-vw) {
+    @return to-rem($min-px);
+  }
+
+  // Наклон в px на px viewport
+  $slope: math.div($max-px - $min-px, $max-vw - $min-vw); // px/px
+  // Свободный член в px
+  $intercept: $min-px - ($slope * $min-vw); // px
+  $min-rem: to-rem($min-px);
+  $max-rem: to-rem($max-px);
+  $intercept-rem: math.div($intercept, 16);
+  // slope-px-per-vw = slope * 100
+  $slope-per-vw: $slope * 100;
+
+  @return clamp(#{$min-rem},
+    #{$intercept-rem}rem + #{$slope-per-vw}vw,
+    #{$max-rem});
+}
+
+// пример использования margin-top: #{clampValue(600, 1440, 16, 44)}; 
+
+:root {
+
+
+  --color-white: #fff;
+  --color-white-012: rgba(255, 255, 255, 0.12);
+  --color-white-02: rgba(255, 255, 255, 0.2);
+
+
+  --color-main: rgba(3, 32, 81, 1);
+  --color-main-08: rgba(3, 32, 81, 0.8);
+  --color-main-06: rgba(3, 32, 81, 0.6);
+
+  --accent-navy: rgba(15, 22, 40, 1);
+
+  --accent-white: rgba(245, 249, 255, 1);
+  --accent-white-08: rgba(245, 249, 255, 0.8);
+  --accent-rose: rgba(255, 245, 245, 1);
+  --accent-orange: rgba(213, 75, 0, 1);
+
+  --accent-brown: rgba(81, 39, 3, 1);
+  --accent-brown-06: rgba(81, 39, 3, 0.6);
+
+
+  --color-warning: red;
+
+
+
+  --gradient-grdblue: linear-gradient(144.63deg, rgba(30, 96, 179, 1) 0%, rgba(13, 55, 118, 1) 100%);
+  --gradient-grdblue-hover: linear-gradient(-35.37deg, rgba(30, 96, 179, 1) 4.784%, rgba(13, 55, 118, 1) 76.899%);
+
+  --gradient-grdblack: linear-gradient(90.00deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+  --gradient-grdblack-hover: llinear-gradient(90.00deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
+
+  --gradient-hero: linear-gradient(90.00deg, rgba(30, 96, 179, 0.7) 0%, rgba(13, 55, 118, 0.7) 100%);
+
+  --card-number: linear-gradient(144.63deg, rgba(30, 96, 179, 0.06) 23.101%, rgba(13, 55, 118, 0.06) 95.216%);
+
+  --team-image: linear-gradient(144.63deg, rgba(142, 196, 244, 1) 23.101%,rgba(133, 187, 237, 1) 95.216%);
+}
+
+
+
+$font: 'uncage';

@@ -1,0 +1,50 @@
+[data-app-social] {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    a {
+        display: flex;
+
+    }
+
+    svg {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+// social color
+
+[data-app-social~=color-black] {
+    --color-1: white;
+    --color-2: black;
+}
+
+
+[data-app-social~=color-white] {
+    --color-1: black;
+    --color-2: white;
+
+}
+
+[data-app-social~=color] {
+    --color-1: indigo;
+    --color-2: white;
+
+}
+
+// social size
+
+[data-app-social~=size-30] {
+    a {
+        height: 30px;
+        width: 30px;
+    }
+}
+[data-app-social~=size-50] {
+    a {
+        height: 50px;
+        width: 50px;
+    }
+}
+

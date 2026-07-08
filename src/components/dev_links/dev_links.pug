@@ -1,0 +1,23 @@
+
+//- Шаблон для миксина dev-links
+mixin dev_links(opts = {})
+    //- Если type не передан, берем 'default'  
+    - const type = opts.type || 'default'
+    - const attr = opts.attr || ''
+    - const customAttrs = opts.attrs || {}  //- произвольные атрибуты
+    
+    - let baseAttrs = { 'data-app-dev-links': attr || '' }
+    - Object.assign(baseAttrs, customAttrs)
+
+    - const data = typeof DEV_LINKS_DATA !== 'undefined' ? DEV_LINKS_DATA : {};
+
+    div&attributes(baseAttrs)
+        
+        div(data-app-text)
+            
+            ul
+
+                each item in data.links
+                    li
+                        a(href=`/${item.link}` target="_blank")= item.title
+

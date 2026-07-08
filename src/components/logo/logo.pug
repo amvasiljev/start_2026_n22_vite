@@ -1,0 +1,139 @@
+mixin logo(opts = {})
+    - const type = opts.type || 'link'
+    - const attr = opts.attr || ''
+    - const tag = type === 'link' ? 'a' : 'div'
+    - const href = type === 'link' ? (opts.href || '/') : null
+    - const logoType = opts.logoType || 'svg'
+    - const svgIcon = opts.svgIcon || 'svg_logo'
+    - const imgName = opts.imgName || 'logo' // имя файла без расширения
+    - const imgFolder = opts.imgFolder || 'logo' // папка с изображениями
+    - const imgExt = opts.imgExt || 'png'
+    - const text = opts.text || 'Название компании'
+    - const ariaLabel = opts.ariaLabel || text + ' — главная страница'
+    - const width = opts.width || '180'
+    - const height = opts.height || '60'
+    - const customAttrs = opts.attrs || {}
+    
+    - let baseAttrs = { 'data-app-logo': attr || '' }
+    if tag === 'a'
+        - baseAttrs.href = href
+        - baseAttrs['aria-label'] = ariaLabel
+    
+    - Object.assign(baseAttrs, customAttrs)
+    
+    #{tag}&attributes(baseAttrs)
+        case logoType
+            when 'svg'
+                svg(
+                    width=width,
+                    height=height,
+                    role="img",
+                    aria-labelledby="logoTitle"
+                )
+                    title(id="logoTitle")= text
+                    use(xlink:href= img + `sprite.svg#${svgIcon}`)
+            
+            when 'img'
+                picture
+                    source(srcset=img + `${imgFolder}/avif/${imgName}.avif` type="image/avif")
+                    source(srcset=img + `${imgFolder}/webp/${imgName}.webp` type="image/webp")
+                    img(
+                        src=img + `${imgFolder}/${imgName}.${imgExt}`,
+                        alt=text,
+                        width=width,
+                        height=height,
+                        loading="lazy",
+                        decoding="async"
+                    )
+            
+            when 'text'
+                span= text
+
+
+
+//- //- Простой вызов (все параметры по умолчанию)
+//- +logo()
+
+//- //- С атрибутом для дата-атрибута
+//- +logo({ attr: 'header' })
+
+//- //- С кастомными размерами
+//- +logo({ 
+//-     attr: 'header', 
+//-     width: '200', 
+//-     height: '80',
+//-     svgIcon: 'svg_logo_custom'
+//- })
+
+//- //- Полный набор
+//- +logo({
+//-     type: 'link',
+//-     attr: 'header',
+//-     logoType: 'svg',
+//-     svgIcon: 'svg_logo',
+//-     text: 'Название компании',
+//-     width: '180',
+//-     height: '60'
+//- })
+
+
+//- //- Базовый (папка logo, файл logo.png)
+//- +logo({
+//-     attr: 'header',
+//-     logoType: 'img',
+//-     text: 'Название компании'
+//- })
+
+//- //- С указанием имени файла
+//- +logo({
+//-     attr: 'header',
+//-     logoType: 'img',
+//-     imgName: 'custom_logo',
+//-     text: 'Название компании'
+//- })
+
+//- //- С указанием папки и имени
+//- +logo({
+//-     attr: 'header',
+//-     logoType: 'img',
+//-     imgName: 'card_1',
+//-     imgFolder: 'card',
+//-     text: 'Название компании'
+//- })
+
+//- //- С другим расширением
+//- +logo({
+//-     attr: 'header',
+//-     logoType: 'img',
+//-     imgName: 'logo',
+//-     imgExt: 'jpg',
+//-     text: 'Название компании'
+//- })
+
+
+//- //- 3. Текстовый логотип
+
+
+//- +logo({
+//-     attr: 'header',
+//-     logoType: 'text',
+//-     text: 'Моя компания'
+//- })
+
+//- //- Логотип без ссылки (div)
+
+//- +logo({
+//-     type: 'div',
+//-     attr: 'footer',
+//-     logoType: 'img',
+//-     imgName: 'logo',
+//-     text: 'Название компании'
+//- })
+
+//- //- Текстовый в div
+//- +logo({
+//-     type: 'div',
+//-     attr: 'footer',
+//-     logoType: 'text',
+//-     text: 'Название компании'
+//- })

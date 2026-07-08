@@ -1,0 +1,64 @@
+mixin pagination(opts = {})
+    - let total = opts.total || 1
+    - const baseUrl = opts.baseUrl || '/'
+    - const attr = opts.attr || ''
+    - const svg = opts.svg || false
+    - const icon = opts.icon || 'svg_arrow_default'
+    - const customAttrs = opts.attrs || {}
+    
+    //- Если total четное, делаем нечетным для красивого центрирования
+    if total % 2 === 0
+        - total = total + 1
+    
+    //- Текущая страница - всегда середина
+    - const current = Math.ceil(total / 2)
+    
+    - let baseAttrs = { 'data-app-pagination': attr || '' }
+    - Object.assign(baseAttrs, customAttrs)
+    
+    //- Link rel для SEO
+    if current > 1
+        link(rel="prev" href=`${baseUrl}${current-1}/`)
+    if current < total
+        link(rel="next" href=`${baseUrl}${current+1}/`)
+    
+    //- Визуальная пагинация
+    nav(aria-label="Пагинация")&attributes(baseAttrs)
+        ul
+            //- Назад
+            if current > 1
+                li
+                    a(href=`${baseUrl}${current-1}/` aria-label="Предыдущая страница")
+                        if svg
+                            svg
+                                use(xlink:href=img + `sprite.svg#${icon}`)
+                        else
+                            span Назад
+            
+            //- 5 цифр: текущая по центру
+            - var start = current - 2
+            - var end = current + 2
+            
+            if start < 1
+                - start = 1
+                - end = Math.min(5, total)
+            if end > total
+                - end = total
+                - start = Math.max(1, total - 4)
+            
+            - for (var i = start; i <= end; i++)
+                li
+                    if i === current
+                        span(aria-current="page")= i
+                    else
+                        a(href=`${baseUrl}${i}/`)= i
+            
+            //- Вперед
+            if current < total
+                li
+                    a(href=`${baseUrl}${current+1}/` aria-label="Следующая страница")
+                        if svg
+                            svg
+                                use(xlink:href=img + `sprite.svg#${icon}`)
+                        else
+                            span Вперед

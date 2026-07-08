@@ -1,0 +1,20 @@
+{
+  "heroMain": {
+    "type": "h1",
+    "attr": "default fsz-31-72 white",
+    "text": "Главный заголовок",
+    "subtext": "Текст под заголовком"
+  },
+  "hero404": {
+    "type": "h1",
+    "attr": "default fsz-31-72 white center",
+    "text": "Страница не найдена",
+    "subtext": ""
+  },
+  "big404": {
+    "type": "div",
+    "attr": "default fsz-168 white center pb-35",
+    "text": "404",
+    "subtext": "Текст о том куда идти и зачем"
+  }
+}

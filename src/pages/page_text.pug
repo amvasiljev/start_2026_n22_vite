@@ -1,0 +1,20 @@
+extends ../layouts/_layout.pug
+
+
+
+block variables
+    -var title = 'Текстовая страница'
+    -var description = 'page text'
+    -var pageClass = ''
+    -var img = 'assets/img/'
+block content
+
+    +section({
+        type: 'text',
+        attr: 'overflow relative round color color-1',
+        crumbs: [
+            {name: 'Главная'},
+            {name: title}
+        ],
+        titleText: title
+    })

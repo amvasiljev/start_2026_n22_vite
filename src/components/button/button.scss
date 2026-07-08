@@ -1,0 +1,362 @@
+[data-app-button] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid transparent;
+    font-size: #{clampValue(600, 1440, 16, 18)};
+    color: inherit;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+}
+
+// display
+[data-app-button~=round] {
+    border-radius: 999px;
+}
+
+[data-app-button~=p-30] {
+    padding: 0 #{clampValue(600, 1440, 16, 30)};
+}
+
+[data-app-button~=h-70] {
+    height: #{clampValue(600, 1440, 70, 70)};
+}
+
+[data-app-button~=h-44] {
+    height: 44px;
+    width: 44px;
+
+}
+
+[data-app-button~=gap] {
+    gap: 10px;
+}
+
+
+// colors 
+[data-app-button~=transparent] {
+    border-color: black;
+}
+
+// [data-app-button~=black] {
+//     background-color: black;
+//     border-color: black;
+//     color: white;
+
+//     // &:hover {
+//     //     background-color: white;
+//     //     color: black;
+//     // }
+// }
+
+// [data-app-button~=white] {
+//     background-color: white;
+//     border-color: black;
+//     color: black;
+
+//     &:hover {
+//         background-color: black;
+//         color: white;
+//     }
+// }
+
+[data-app-button~=fsz-18] {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 500;
+
+}
+
+[data-app-button~=gradient] {
+    // width: 300px;
+    position: relative;
+    overflow: hidden;
+    color: var(--color-white);
+    z-index: 1;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: opacity 0.6s ease;
+        z-index: -1;
+    }
+
+    &::before {
+
+        opacity: 1;
+    }
+
+    &::after {
+
+        opacity: 0;
+    }
+
+    &:hover::before {
+        opacity: 0;
+    }
+
+    &:hover::after {
+        opacity: 1;
+    }
+}
+
+
+[data-app-button~=gradblue] {
+
+    // backdrop-filter: blur(7px);
+
+    color: var(--color-white);
+
+    &::before {
+        background: var(--gradient-grdblue);
+        opacity: 1;
+    }
+
+    &::after {
+        background: var(--gradient-grdblue-hover);
+        opacity: 0;
+    }
+
+    &:hover {
+        &::after {
+            background: var(--gradient-grdblue-hover);
+            opacity: 1;
+        }
+    }
+}
+
+[data-app-button~=gradblack] {
+
+    // backdrop-filter: blur(7px);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-white);
+
+    &::before {
+        background: var(--gradient-grdblack);
+        opacity: 1;
+    }
+
+    &::after {
+        background: var(--gradient-grdblack-hover);
+        opacity: 0;
+    }
+
+    &:hover {
+        &::after {
+            background: var(--gradient-grdblack-hover);
+            opacity: 1;
+        }
+    }
+}
+
+// status
+[data-app-button~=disabled] {
+    cursor: not-allowed;
+}
+
+[data-app-button~=hidden] {
+    display: none;
+}
+
+// svg
+
+[data-app-button~=svg] {
+
+    svg {
+
+        height: 70%;
+        // width: 30px;
+    }
+}
+
+[data-app-button~=move] {
+    width: 345px;
+    overflow: hidden;
+    display: block;
+
+    &>div {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        div {
+            width: 500px;
+            display: flex;
+            white-space: nowrap;
+            align-items: center;
+            gap: 16px;
+            position: absolute;
+            left: -66px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+        }
+    }
+
+    svg {
+        height: 16px;
+        width: 86px;
+
+        transition: opacity 0.3s ease;
+        &:nth-of-type(1) {
+            opacity: 0;
+        }
+
+        &:nth-of-type(2) {
+            opacity: 1;
+        }
+    }
+
+    &:hover {
+        &>div {
+            div {
+
+                left: 30px;
+            }
+        }
+
+        svg {
+            &:nth-of-type(1) {
+                opacity: 1;
+            }
+
+            &:nth-of-type(2) {
+                opacity: 0;
+            }
+        }
+    }
+
+}
+
+[data-app-button~=cross] {
+    height: 40px;
+    width: 40px;
+    outline: 1px solid wheat;
+
+    svg {
+        color: inherit;
+    }
+
+}
+
+[data-app-button~=burger] {
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    color: var(--color-white);
+    background-color: var(--color-white-02);
+    border-radius: 999px;
+    flex: none;
+    display: none;
+
+    @include m_768max{
+        display: flex;
+    }
+    svg {
+        width: 20px;
+        height: 18px;
+    }
+}
+
+[data-app-button~=panel-close] {
+    svg {
+        height: 100%;
+    }
+
+}
+
+[data-app-button~=slider-arrow] {
+    aspect-ratio: 1/1;
+    color: black;
+    padding: 0;
+
+    svg {
+        height: 100%;
+    }
+}
+
+[data-direction="prev"] {
+    svg {
+        transform: rotate(-180deg);
+    }
+}
+
+[data-app-button~=accent-white] {
+    --color-1: white; // background
+    --color-2: black; // border
+    --color-3: black; // arrow
+
+
+    &:hover {
+        --color-1: black;
+        --color-2: black;
+        --color-3: white;
+    }
+}
+
+[data-app-button~=accent-black] {
+    --color-1: black;
+    --color-2: black;
+    --color-3: white;
+
+    &:hover {
+        --color-1: white;
+        --color-2: black;
+        --color-3: black;
+
+    }
+}
+.btn-hover {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: #1a1a1a;
+  color: #ffffff;
+  border: 2px solid #333;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: #2a2a2a;
+    border-color: #666;
+  }
+
+  svg {
+    width: 37px;
+    height: 25px;
+    display: block;
+    position: relative;
+    
+    .arrow-group {
+      // Вращаем вокруг ЦЕНТРА группы
+      transition: transform 0.4s ease;
+      transform-origin: 9.4px 12.5px; // Центр вашей стрелки
+      transform: rotate(0deg);
+      // Группа уже позиционирована через translate в атрибуте
+    }
+  }
+
+  &:hover {
+    svg {
+      .arrow-group {
+        transform: rotate(45deg);
+      }
+    }
+  }
+}

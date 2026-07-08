@@ -1,0 +1,33 @@
+extends layouts/_layout.pug
+
+//- include ./components/test/test
+
+block variables
+    -var title = 'Главная'
+    -var description = 'Главная'
+    -var img = 'assets/img/'
+
+block content
+
+ 
+    +section({
+        type: 'main',
+        attr: 'overflow relative round round-bottom-mobile color color-1',
+    })
+
+    section(data-app-section="overflow")
+
+        div(data-app-container="")
+
+
+    section(data-app-section="overflow")
+
+        div(data-app-container="")
+            +title({
+                preset: 'aboutMain',
+                attrAdd: 'pb-35'
+            })
+            +box({
+                type: 'mainArea',
+                attr: 'grid about-area gap-30'
+            })

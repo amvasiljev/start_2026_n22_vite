@@ -1,0 +1,191 @@
+
+[data-app-title~=default] {
+
+    h1,
+    h2,
+    div {
+        font-weight: 500;
+        text-align: left;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-family: $font;
+        color: var(--color-main);
+    }
+
+    p {
+        font-size: #{clampValue(600, 1920, 14, 18)};
+        margin-top: 22px;
+        line-height: #{clampValue(600, 1920, 20, 30)};
+    }
+}
+
+[data-app-title~=white] {
+
+    h1,
+    h2,
+    h3,
+    div,
+    span,
+    p {
+        color: var(--color-white);
+    }
+}
+
+// [data-app-title~=black] {
+//     * {
+//         color: black;
+//     }
+// }
+
+
+[data-app-title~=fsz-31-72] {
+    font-size: #{clampValue(600, 1920, 23, 72)};
+
+    h1,
+    h2 {
+        font-size: #{clampValue(600, 1920, 23, 72)};
+        line-height: #{clampValue(600, 1920, 43, 85)};
+    }
+}
+
+[data-app-title~=fsz-46] {
+    font-size: #{clampValue(600, 1920, 23, 46)};
+
+    h1,
+    h2 {
+        font-size: #{clampValue(600, 1920, 23, 46)};
+        line-height: #{clampValue(600, 1920, 36, 55)};
+    }
+}
+
+[data-app-title~=fsz-217] {
+
+    h1,
+    h2,div {
+        font-size: #{clampValue(1200, 1920, 135, 217)}
+    }
+}
+
+[data-app-title~=fsz-168] {
+
+    h1,
+    h2,
+    div {
+        font-size: #{clampValue(1200, 1920, 128, 168)};
+        // line-height: #{clampValue(1200, 1920, 128, 202)};
+        line-height: 128px;
+
+    }
+}
+
+[data-app-title~=mobile-center] {
+
+    @include m_320 {
+
+        h1,
+        h2,
+        div,
+        p {
+            text-align: center;
+        }
+    }
+
+}
+
+[data-app-title~=center] {
+
+    h1,
+    h2,
+    div,
+    p {
+        text-align: center;
+    }
+
+}
+
+[data-app-title~=p-40] {
+    padding: 40px;
+
+}
+
+[data-app-title~=vertical] {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    @include m_320 {
+        display: block;
+        padding: 0;
+    }
+
+}
+
+[data-app-title~=pb-20] {
+    padding-bottom: #{clampValue(600, 1920, 15, 20)};
+
+
+}
+
+[data-app-title~=pb-25] {
+    padding-bottom: #{clampValue(600, 1920, 20, 25)};
+
+}
+
+[data-app-title~=pb-35] {
+    padding-bottom: #{clampValue(600, 1920, 30, 35)};
+
+}
+
+[data-app-title~=pb-50] {
+    padding-bottom: #{clampValue(600, 1920, 35, 50)};
+
+}
+
+[data-app-title~=flex-row] {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-flow: wrap;
+
+    p {
+        margin-top: 0;
+    }
+
+}
+
+[data-app-title~=p-21] {
+    p {
+        font-size: #{clampValue(600, 1920, 18, 21)};
+        font-weight: 500;
+        line-height: 27px;
+    }
+
+}
+
+[data-app-title~=p-14] {
+    p {
+        font-size: 14px;
+        line-height: 21px;
+        color: var(--color-main-08);
+    }
+
+}
+
+[data-app-title~=p-tar] {
+    p {
+        text-align: right;
+
+        @include m_1024max {
+            text-align: left;
+        }
+    }
+
+}
+[data-app-title~=nowrap] {
+    div{
+        white-space: nowrap;
+    }
+}

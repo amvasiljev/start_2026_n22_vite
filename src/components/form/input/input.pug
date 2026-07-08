@@ -1,0 +1,91 @@
+mixin input(opts = {})
+    - const type = opts.type || 'text'
+    - const name = opts.name || ''
+    - const value = opts.value || ''
+    - const placeholder = opts.placeholder || ''
+    - const required = opts.required || false
+    - const error = opts.error || ''
+    - const label = opts.label || ''
+    - const id = opts.id || ''
+    - const layout = opts.layout || 'wrap'
+    - const customAttrs = opts.attrs || {}
+    
+    //- Для checkbox и radio placeholder не нужен
+    - const isCheckbox = type === 'checkbox' || type === 'radio'
+    - const hasLabel = label !== false && label !== ''
+    - const inputId = id || `input-${Math.random().toString(36).slice(2, 8)}`
+    - const errorId = `${inputId}-error`
+    
+    - let inputAttrs = { 'type': type, 'name': name,'id': inputId }
+    
+    //- Значение только не для checkbox/radio (у них value отдельно)
+    if !isCheckbox && value
+        - inputAttrs.value = value
+    else if isCheckbox && value
+        - inputAttrs.value = value
+    
+    //- Placeholder только для текстовых полей
+    if !isCheckbox && placeholder
+        - inputAttrs.placeholder = placeholder
+    
+    //- ARIA: обязательное поле
+    if required
+        - inputAttrs.required = true
+        - inputAttrs['aria-required'] = 'true'
+    
+    //- ARIA: ошибка
+    if error
+        - inputAttrs.class = 'error'
+        - inputAttrs['aria-invalid'] = 'true'
+        - inputAttrs['aria-describedby'] = errorId
+    else
+        - inputAttrs['aria-invalid'] = 'false'
+    
+    - Object.assign(inputAttrs, customAttrs)
+    
+    //- Функция для вывода ошибки (используется везде)
+    mixin errorBlock
+        if error
+            span(
+                id=errorId
+                class="error-message"
+                role="alert"
+                aria-live="polite"
+            )= error
+    
+    //- Для checkbox/radio
+    if isCheckbox
+        if layout === 'simple'
+            input&attributes(inputAttrs)
+            +errorBlock
+        else
+            label
+                input&attributes(inputAttrs)
+                if hasLabel
+                    span= label
+                +errorBlock
+    else
+        case layout
+            when 'simple'
+                input&attributes(inputAttrs)
+                +errorBlock
+            
+            when 'wrap'
+                label
+                    if hasLabel
+                        span
+                            | #{label}
+                            if required
+                                sup(aria-hidden="true") *
+                    input&attributes(inputAttrs)
+                    +errorBlock
+            
+            when 'separate'
+                if hasLabel
+                    label(for=inputId)
+                        span
+                            | #{label}
+                            if required
+                                sup(aria-hidden="true") *
+                input(id=inputId)&attributes(inputAttrs)
+                +errorBlock

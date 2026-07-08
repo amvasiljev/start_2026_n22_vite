@@ -1,0 +1,140 @@
+@import './utils/vars';
+@import './utils/reset';
+@import './utils/fonts';
+@import './utils/mixins';
+@import './utils/libs';
+
+
+@import '../components/title/title';
+@import '../components/button/button';
+@import '../components/section/section';
+@import '../components/header/header';
+@import '../components/footer/footer';
+@import '../components/breadcrumbs/breadcrumbs';
+@import '../components/text/text';
+
+@import '../components/logo/logo';
+@import '../components/cookies/cookies';
+@import '../components/nav/nav';
+@import '../components/nav/nav-panel/nav-panel';
+@import '../components/contact/contact';
+@import '../components/form/form';
+@import '../components/dialog/dialog';
+
+
+
+@import '../components/box/box';
+@import '../components/card/card';
+@import '../components/slider/slider';
+@import '../components/faq/faq';
+
+
+* {
+   font-family: "Ubuntu", sans-serif;
+    min-height: 0;
+    min-width: 0;
+
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: black;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: white;
+
+    border-radius: 50px;
+
+}
+[data-app-body~=pb-16] {
+    padding-bottom: 16px;
+
+    @include m_320{
+        padding-bottom: 0;
+    }
+    
+}
+[data-app-body~=pt-16] {
+    padding-top: 16px;
+
+    @include m_320{
+        padding-top: 0;
+    }
+    
+}
+
+body:has([data-app-dialog][open]) {
+    overflow: hidden;
+}
+
+
+
+main {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+
+}
+
+body{
+    display: grid;
+    min-height: 100dvh;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 'header' 'main' 'footer';
+    background-color: rgb(29, 29, 29);
+    // background-image: url('@img/card/card_1.png');
+    
+    header{
+        grid-area: header;
+    }
+    footer{
+        grid-area: footer;
+    }
+    main{
+        grid-area: main;
+    }
+}
+
+footer {
+    flex: 0 0 auto;
+}
+
+body {
+    background-color: var(--color-white);
+    color: var(--color-main);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body[active] {
+   
+
+   [data-app-nav-overlay]  {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      
+    }
+}
+
+[data-app-nav-overlay] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(35, 35, 35, 0.2);
+
+    z-index: 999;
+   
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    pointer-events: none;
+}
+

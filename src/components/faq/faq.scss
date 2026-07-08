@@ -1,0 +1,129 @@
+[data-app-faq] {
+
+
+    
+
+        border-bottom: 1px solid var(--accent-black-008);
+        padding: 0 0 20px 0;
+
+
+        .faq__list {
+            display: grid;
+            grid-template-columns: 1fr;
+            // gap: #{clampValue(600, 1440, 10, 25)};
+            gap: 10px;
+            align-items: start;
+
+        }
+
+        [data-app-button~=faq] {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            transform: rotate(-90deg);
+
+            @include m_320 {
+                top: 15px;
+                right: 15px;
+            }
+        }
+
+
+
+
+
+        details summary {
+
+            list-style: none;
+            cursor: pointer;
+
+
+            padding: 20px 0;
+
+
+            @include m_320 {
+                padding: 0 0 20px;
+            }
+
+            &::-webkit-details-marker {
+                display: none;
+            }
+
+        }
+
+
+        details {
+
+            position: relative;
+            padding: 20px 0 20px 30px;
+            width: calc(100% - 16px);
+            margin: 0 auto;
+            background-color: var(--color-white);
+
+            @include m_1200 {
+                width: calc(100% - #{clampValue(600, 1440, 100, 40)});
+            }
+
+            @include m_320 {
+                width: 100%;
+                padding: 20px 20px 0;
+                border: 1px solid var(--color-grey);
+                border-radius: 5px;
+            }
+
+
+
+            span {
+
+                font-size: #{clampValue(600, 1440, 18, 20)};
+                text-transform: uppercase;
+                font-weight: 500;
+
+                position: relative;
+                text-align: left;
+                display: inline-flex;
+                width: calc(100% - 60px);
+
+
+
+            }
+
+            p {
+
+                // padding: 0 20px 20px;
+
+                position: relative;
+                font-weight: 400;
+                width: calc(100% - 40px);
+                width: 100%;
+                font-size: 16px;
+                color: var(--color-black-second);
+                text-align: left;
+                line-height: 140%;
+
+                &:not(:last-child) {
+                    margin-bottom: 10px;
+
+                }
+
+                &:last-child {
+
+                    @include m_320 {
+                        margin-bottom: 20px;
+                    }
+                }
+
+            }
+
+            &[open] {
+                gap: 30px;
+                [data-app-button~=faq] {
+                    transform: rotate(90deg);
+                }
+
+            }
+
+        }
+    
+
+}

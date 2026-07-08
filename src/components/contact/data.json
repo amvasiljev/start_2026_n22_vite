@@ -1,0 +1,30 @@
+{
+  "contactFooter": [
+    {
+      "type": "phone",
+      "value": "+7 (999) 000 00 00",
+      "text": "+7 (999) 000 00 00",
+      "attr": "footer color-white"
+    },
+    {
+      "text": "111111 г. Москва, ул. Длинное название улицы, д.100",
+      "attr": "footer color-white"
+    },
+    {
+      "type": "email",
+      "value": "infor@info.ru",
+      "attr": "footer color-white"
+    }
+  ],
+  "auth": [
+    {
+      "type": "link",
+      "value": "/#",
+      "text": "Личный кабинет",
+      "attr": "header",
+      "hasIcon": true,
+      "icon": "svg_auth",
+      "labelAdd": "в разработке"
+    }
+  ]
+}

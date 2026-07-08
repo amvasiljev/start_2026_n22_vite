@@ -1,0 +1,41 @@
+// ---------- Подключение шрифтов ---------- //
+
+// @font-face {
+//     font-family: "Roboto Regular";
+//     src: url("~@/assets//themes/default/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+//     font-display: swap;
+// }
+
+// @font-face {
+//     font-family: "Roboto Bold";
+//     src: url("~@/assets/themes/default/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+//     font-display: swap;
+// }
+// @font-face {
+//     font-family: "Bebas";
+//     src: url("@fonts/BebasNeueCyrillic.woff") format("woff");
+//     font-display: swap;
+// }
+@font-face {
+    font-family: "uncage";
+    src: url("/assets/fonts/uncage.woff") format("woff");
+    font-display: swap;
+}
+@font-face {
+    font-family: "uncage";
+    src: url("/assets/fonts/uncage-4.woff") format("woff");
+    font-weight: bold;
+    font-display: swap;
+}
+@font-face {
+    font-family: "uncage";
+    src: url("/assets/fonts/uncage-2.woff") format("woff");
+    font-weight: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "uncage";
+    src: url("/assets/fonts/uncage-3.woff") format("woff");
+    font-weight: normal;
+    font-display: swap;
+}
