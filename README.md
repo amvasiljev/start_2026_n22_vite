@@ -29,3 +29,4 @@ header/	HEADER_DATA
 ```
 - const navData = typeof NAV_DATA !== 'undefined' ? NAV_DATA : {};
 ```
+Но можно и без этого
