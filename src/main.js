@@ -1,4 +1,7 @@
 // src/main.js
+
+import './styles/main.scss'; 
+
 console.log('🚀 Vite + Pug + SCSS работает!');
 
 document.addEventListener('DOMContentLoaded', () => {
