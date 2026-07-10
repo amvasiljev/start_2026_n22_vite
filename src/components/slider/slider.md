@@ -195,3 +195,31 @@ mixin slider(attr, news)
 Версия: 1.0
 
 text
+
+Ширина слайда = (Ширина контейнера - (Количество_видимых_слайдов - 1) * margin) / Количество_видимых_слайдов
+
+
+[data-app-slider~=service] {
+
+    $slide-gap: #{clampValue(600, 1440, 16, 30)};
+    .swiper{
+
+        @include m_320{
+            margin-right: -28px;
+        }
+
+        &-slide{
+            width: calc((100% - 2 * $slide-gap) / 3);
+            margin-right: $slide-gap;
+
+            @include m_768{
+                width: calc((100% - $slide-gap) / 2);
+            }
+
+            @include m_320{
+                width: 280px;
+            }
+        }
+    }
+    
+}
