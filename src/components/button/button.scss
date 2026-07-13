@@ -69,92 +69,6 @@
 
 }
 
-[data-app-button~=gradient] {
-    // width: 300px;
-    position: relative;
-    overflow: hidden;
-    color: var(--color-white);
-    z-index: 1;
-
-    &::before,
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        transition: opacity 0.6s ease;
-        z-index: -1;
-    }
-
-    &::before {
-
-        opacity: 1;
-    }
-
-    &::after {
-
-        opacity: 0;
-    }
-
-    &:hover::before {
-        opacity: 0;
-    }
-
-    &:hover::after {
-        opacity: 1;
-    }
-}
-
-
-[data-app-button~=gradblue] {
-
-    // backdrop-filter: blur(7px);
-
-    color: var(--color-white);
-
-    &::before {
-        background: var(--gradient-grdblue);
-        opacity: 1;
-    }
-
-    &::after {
-        background: var(--gradient-grdblue-hover);
-        opacity: 0;
-    }
-
-    &:hover {
-        &::after {
-            background: var(--gradient-grdblue-hover);
-            opacity: 1;
-        }
-    }
-}
-
-[data-app-button~=gradblack] {
-
-    // backdrop-filter: blur(7px);
-    border-color: rgba(255, 255, 255, 0.2);
-    color: var(--color-white);
-
-    &::before {
-        background: var(--gradient-grdblack);
-        opacity: 1;
-    }
-
-    &::after {
-        background: var(--gradient-grdblack-hover);
-        opacity: 0;
-    }
-
-    &:hover {
-        &::after {
-            background: var(--gradient-grdblack-hover);
-            opacity: 1;
-        }
-    }
-}
 
 // status
 [data-app-button~=disabled] {
@@ -176,69 +90,7 @@
     }
 }
 
-[data-app-button~=move] {
-    width: 345px;
-    overflow: hidden;
-    display: block;
 
-    &>div {
-        width: 100%;
-        overflow: hidden;
-        position: relative;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-
-        div {
-            width: 500px;
-            display: flex;
-            white-space: nowrap;
-            align-items: center;
-            gap: 16px;
-            position: absolute;
-            left: -66px;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: all 0.3s ease;
-        }
-    }
-
-    svg {
-        height: 16px;
-        width: 86px;
-
-        transition: opacity 0.3s ease;
-        &:nth-of-type(1) {
-            opacity: 0;
-        }
-
-        &:nth-of-type(2) {
-            opacity: 1;
-        }
-    }
-
-    &:hover {
-        &>div {
-            div {
-
-                left: 30px;
-            }
-        }
-
-        svg {
-            &:nth-of-type(1) {
-                opacity: 1;
-            }
-
-            &:nth-of-type(2) {
-                opacity: 0;
-            }
-        }
-    }
-
-}
 
 [data-app-button~=cross] {
     height: 40px;
@@ -318,45 +170,200 @@
 
     }
 }
-.btn-hover {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 28px;
-  background: #1a1a1a;
-  color: #ffffff;
-  border: 2px solid #333;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-  transition: all 0.3s ease;
+
+
+// .btn-hover {
+//   display: inline-flex;
+//   align-items: center;
+//   gap: 12px;
+//   padding: 14px 28px;
+//   background: #1a1a1a;
+//   color: #ffffff;
+//   border: 2px solid #333;
+//   border-radius: 12px;
+//   cursor: pointer;
+//   font-size: 16px;
+//   font-weight: 500;
+//   transition: all 0.3s ease;
   
-  &:hover {
-    background: #2a2a2a;
-    border-color: #666;
-  }
+//   &:hover {
+//     background: #2a2a2a;
+//     border-color: #666;
+//   }
 
-  svg {
-    width: 37px;
-    height: 25px;
-    display: block;
-    position: relative;
+//   svg {
+//     width: 37px;
+//     height: 25px;
+//     display: block;
+//     position: relative;
     
-    .arrow-group {
-      // Вращаем вокруг ЦЕНТРА группы
-      transition: transform 0.4s ease;
-      transform-origin: 9.4px 12.5px; // Центр вашей стрелки
-      transform: rotate(0deg);
-      // Группа уже позиционирована через translate в атрибуте
-    }
-  }
+//     .arrow-group {
+//       // Вращаем вокруг ЦЕНТРА группы
+//       transition: transform 0.4s ease;
+//       transform-origin: 9.4px 12.5px; // Центр вашей стрелки
+//       transform: rotate(0deg);
+//       // Группа уже позиционирована через translate в атрибуте
+//     }
+//   }
 
-  &:hover {
-    svg {
-      .arrow-group {
-        transform: rotate(45deg);
-      }
-    }
-  }
-}
+//   &:hover {
+//     svg {
+//       .arrow-group {
+//         transform: rotate(45deg);
+//       }
+//     }
+//   }
+// }
+
+
+// [data-app-button~=move] {
+//     width: 345px;
+//     overflow: hidden;
+//     display: block;
+
+//     &>div {
+//         width: 100%;
+//         overflow: hidden;
+//         position: relative;
+//         height: 100%;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+
+
+//         div {
+//             width: 500px;
+//             display: flex;
+//             white-space: nowrap;
+//             align-items: center;
+//             gap: 16px;
+//             position: absolute;
+//             left: -66px;
+//             top: 50%;
+//             transform: translateY(-50%);
+//             transition: all 0.3s ease;
+//         }
+//     }
+
+//     svg {
+//         height: 16px;
+//         width: 86px;
+
+//         transition: opacity 0.3s ease;
+//         &:nth-of-type(1) {
+//             opacity: 0;
+//         }
+
+//         &:nth-of-type(2) {
+//             opacity: 1;
+//         }
+//     }
+
+//     &:hover {
+//         &>div {
+//             div {
+
+//                 left: 30px;
+//             }
+//         }
+
+//         svg {
+//             &:nth-of-type(1) {
+//                 opacity: 1;
+//             }
+
+//             &:nth-of-type(2) {
+//                 opacity: 0;
+//             }
+//         }
+//     }
+
+// }
+
+
+// [data-app-button~=gradient] {
+//     // width: 300px;
+//     position: relative;
+//     overflow: hidden;
+//     color: var(--color-white);
+//     z-index: 1;
+
+//     &::before,
+//     &::after {
+//         content: '';
+//         position: absolute;
+//         top: 0;
+//         left: 0;
+//         width: 100%;
+//         height: 100%;
+//         transition: opacity 0.6s ease;
+//         z-index: -1;
+//     }
+
+//     &::before {
+
+//         opacity: 1;
+//     }
+
+//     &::after {
+
+//         opacity: 0;
+//     }
+
+//     &:hover::before {
+//         opacity: 0;
+//     }
+
+//     &:hover::after {
+//         opacity: 1;
+//     }
+// }
+
+
+// [data-app-button~=gradblue] {
+
+//     // backdrop-filter: blur(7px);
+
+//     color: var(--color-white);
+
+//     &::before {
+//         background: var(--gradient-grdblue);
+//         opacity: 1;
+//     }
+
+//     &::after {
+//         background: var(--gradient-grdblue-hover);
+//         opacity: 0;
+//     }
+
+//     &:hover {
+//         &::after {
+//             background: var(--gradient-grdblue-hover);
+//             opacity: 1;
+//         }
+//     }
+// }
+
+// [data-app-button~=gradblack] {
+
+//     // backdrop-filter: blur(7px);
+//     border-color: rgba(255, 255, 255, 0.2);
+//     color: var(--color-white);
+
+//     &::before {
+//         background: var(--gradient-grdblack);
+//         opacity: 1;
+//     }
+
+//     &::after {
+//         background: var(--gradient-grdblack-hover);
+//         opacity: 0;
+//     }
+
+//     &:hover {
+//         &::after {
+//             background: var(--gradient-grdblack-hover);
+//             opacity: 1;
+//         }
+//     }
+// }
