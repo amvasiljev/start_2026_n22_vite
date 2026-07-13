@@ -40,6 +40,18 @@ mixin header(attr)
 				attr: 'burger',
 				svg: true,
 				icon: 'svg_burger',
-				ariaLabel: 'Open menu'
+				ariaLabel: 'Open menu',
+				attrs: {
+					'dialog-open': '#navDialog'
+				}
+			})
+			+button({
+				attr: 'burger',
+				svg: true,
+				icon: 'svg_burger',
+				ariaLabel: 'Open menu',
+				attrs: {
+					'dialog-open': '#popup_thanks'
+				}
 			})
 			//- +button('🌙','','','','','dark')

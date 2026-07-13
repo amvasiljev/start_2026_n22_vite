@@ -252,36 +252,112 @@ function sliderAll(elements) {
 
 
 
-const burger = document.querySelector('[data-app-button~="burger"]');
+// const burger = document.querySelector('[data-app-button~="burger"]');
 
 
-const navMobile = document.querySelector('[data-app-nav-panel]');
-const navBody = document.querySelector('body');
-const navClose = document.querySelector('[data-app-button~="panel-close"]');
-const navOverlay = document.querySelector('[data-app-nav-overlay]');
+// const navMobile = document.querySelector('[data-app-nav-panel]');
+// const navBody = document.querySelector('body');
+// const navClose = document.querySelector('[data-app-button~="panel-close"]');
+// const navOverlay = document.querySelector('[data-app-nav-overlay]');
 
-const toggleElements = [burger, navMobile, navBody];
+// const toggleElements = [burger, navMobile, navBody];
 
-function toggleActive() {
-  toggleElements.forEach(el => {
-    if (el) el.toggleAttribute('active');
+// function toggleActive() {
+//   toggleElements.forEach(el => {
+//     if (el) el.toggleAttribute('active');
     
-  });
-}
+//   });
+// }
 
-if (burger) {
+// if (burger) {
 
-  burger.addEventListener('click', toggleActive);
+//   burger.addEventListener('click', toggleActive);
  
 
-  if (navClose) {
-    navClose.addEventListener('click', toggleActive);
-  }
-  navOverlay?.addEventListener('click', toggleActive);
+//   if (navClose) {
+//     navClose.addEventListener('click', toggleActive);
+//   }
+//   navOverlay?.addEventListener('click', toggleActive);
   
-}
+// }
 
+// ============ Универсальный менеджер диалогов ============
 
+// Открытие/закрытие по dialog-open
+document.addEventListener('click', (e) => {
+  const trigger = e.target.closest('[dialog-open]');
+  if (!trigger) return;
+  
+  e.preventDefault();
+  e.stopPropagation();
+  
+  const dialogId = trigger.getAttribute('dialog-open');
+  const dialog = document.querySelector(dialogId);
+  const body = document.querySelector('body');
+  
+  if (dialog) {
+    dialog.toggleAttribute('active');
+    body?.toggleAttribute('active');
+  } else {
+    console.warn(`Диалог с id "${dialogId}" не найден`);
+  }
+});
+
+// Закрытие по dialog-close
+document.addEventListener('click', (e) => {
+  const closeBtn = e.target.closest('[dialog-close]');
+  if (!closeBtn) return;
+  
+  e.preventDefault();
+  e.stopPropagation();
+  
+  const dialog = closeBtn.closest('[data-app-dialog]');
+  if (dialog) {
+    dialog.removeAttribute('active');
+    if (!document.querySelector('[data-app-dialog][active]')) {
+      document.querySelector('body')?.removeAttribute('active');
+    }
+  }
+});
+
+// Закрытие по оверлею
+document.addEventListener('click', (e) => {
+  const overlay = e.target.closest('[data-app-dialog-overlay]');
+  if (!overlay) return;
+  
+  e.preventDefault();
+  e.stopPropagation();
+  
+  const dialog = overlay.closest('[data-app-dialog]');
+  if (dialog) {
+    dialog.removeAttribute('active');
+    if (!document.querySelector('[data-app-dialog][active]')) {
+      document.querySelector('body')?.removeAttribute('active');
+    }
+  }
+});
+
+// Закрытие по ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const activeDialog = document.querySelector('[data-app-dialog][active]');
+    if (activeDialog) {
+      activeDialog.removeAttribute('active');
+      if (!document.querySelector('[data-app-dialog][active]')) {
+        document.querySelector('body')?.removeAttribute('active');
+      }
+    }
+  }
+});
+
+// Единый оверлей (если есть)
+document.querySelector('[data-app-nav-overlay]')?.addEventListener('click', function() {
+  const activeDialogs = document.querySelectorAll('[data-app-dialog][active]');
+  activeDialogs.forEach(dialog => {
+    dialog.removeAttribute('active');
+  });
+  document.querySelector('body')?.removeAttribute('active');
+});
 
 // cookies 
 

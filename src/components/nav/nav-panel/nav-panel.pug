@@ -1,5 +1,5 @@
 mixin nav-panel()
-    div(data-app-nav-panel)
+    div(data-app-nav-panel data-app-dialog="right" id="navDialog")
         div
             +logo({
                 type: 'link',
@@ -12,9 +12,12 @@ mixin nav-panel()
 
 
             +button({
-                attr: 'panel-close h-44',
+                attr: 'panel-close h-44 ',
                 svg: true,
                 icon:'svg_close',
+                attrs: {
+					'dialog-close': true
+				}
             })
 
 
