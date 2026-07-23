@@ -12,6 +12,12 @@
   }
 }
 
+@mixin m_over {
+  @media (width < 1024px) {
+    @content;
+  }
+}
+
 @mixin m_768max {
   @media (width < 1024px) {
     @content;
